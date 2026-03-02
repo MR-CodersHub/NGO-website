@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Jeevan Foundation</title>
+    <link rel="icon" type="icon/png" href="./assets/img/favicon.ico.png">
+    <meta name="description" content="Manage Jeevan Foundation operations, donations, volunteers, and campaigns.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Rubik:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="src/css/style.css">
+    <style>
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--primary-dark);
+            color: var(--white);
+            position: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: auto;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem 1.5rem 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .sidebar-logo {
+            font-family: var(--heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            display: block;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.625rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            background: var(--accent);
+            color: var(--dark);
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-nav-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 0 2rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-section {
+            padding: 0 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9375rem;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            text-decoration: none;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            border-left-color: var(--accent);
+        }
+
+        .sidebar-nav svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+            flex-shrink: 0;
+        }
+
+        .sidebar-footer {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--primary-dark);
+            flex-shrink: 0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .user-name {
+            font-weight: 500;
+            font-size: 0.9375rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 140px;
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            background: #f8fafc;
+            min-height: 100vh;
+            width: calc(100% - 260px);
+            transition: margin 0.3s ease;
+        }
+
+        .topbar {
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .topbar-title {
+            font-family: var(--heading);
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .topbar-search {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1rem;
+            background: #f1f5f9;
+            border-radius: 0.5rem;
+            border: none;
+        }
+
+        .topbar-search input {
+            border: none;
+            background: transparent;
+            font-size: 0.875rem;
+            font-family: var(--body);
+            width: 200px;
+        }
+
+        .topbar-search input:focus {
+            outline: none;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: #f1f5f9;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .icon-btn:hover {
+            background: #e2e8f0;
+            color: var(--text);
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+        }
+
+        .content-area {
+            padding: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .stat-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-card-icon.primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .stat-card-icon.accent {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .stat-card-icon.success {
+            background: #10b981;
+            color: var(--white);
+        }
+
+        .stat-card-icon.info {
+            background: #3b82f6;
+            color: var(--white);
+        }
+
+        .stat-card-value {
+            font-family: var(--numbers);
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-card-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-card-trend {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.8125rem;
+            font-weight: 500;
+        }
+
+        .stat-card-trend.up {
+            color: #10b981;
+        }
+
+        .stat-card-trend.down {
+            color: #ef4444;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-family: var(--heading);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            background: #f8fafc;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .table td {
+            padding: 1rem;
+            font-size: 0.9375rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .donor-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .donor-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #1a8a94);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.625rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 100px;
+        }
+
+        .status-badge.completed {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .status-badge.pending {
+            background: rgba(249, 168, 38, 0.1);
+            color: #f59e0b;
+        }
+
+        .status-badge.failed {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .quick-action {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.75rem;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .quick-action:last-child {
+            margin-bottom: 0;
+        }
+
+        .quick-action:hover {
+            background: #f1f5f9;
+        }
+
+        .quick-action-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            color: var(--primary);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .quick-action-text h4 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-bottom: 0.125rem;
+        }
+
+        .quick-action-text p {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-family: var(--body);
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+        }
+
+        /* ===================================================
+           ADMIN DASHBOARD – Mobile 360px Responsive Fixes
+           Applies to: max-width 767px
+           Does NOT affect: tablet (768px+) or desktop
+        =================================================== */
+        /* --- Admin Sidebar Tablet & Mobile Breakpoints --- */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+                width: 100% !important;
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(15, 20, 25, 0.7);
+                z-index: 999;
+                backdrop-filter: blur(4px);
+                pointer-events: auto;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .menu-toggle {
+                display: flex !important;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .topbar {
+                padding: 0.75rem 1rem !important;
+            }
+
+            .topbar-title {
+                font-size: 1rem !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 180px;
+            }
+
+            /* Show menu toggle button */
+            .menu-toggle {
+                display: flex !important;
+                flex-shrink: 0;
+            }
+
+            /* Topbar search: hide on very small screens */
+            .topbar-search {
+                display: none !important;
+            }
+
+            /* Content area padding */
+            .content-area {
+                padding: 1rem !important;
+                box-sizing: border-box;
+            }
+
+            /* Stats grid: 1 column on mobile */
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* Dashboard main grid: 1 column */
+            .dashboard-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* Stat card: full width, no overflow */
+            .stat-card {
+                width: 100% !important;
+                box-sizing: border-box !important;
+                padding: 1.25rem !important;
+            }
+
+            .stat-card-value {
+                font-size: 1.75rem !important;
+            }
+
+            /* Card itself */
+            .card {
+                width: 100% !important;
+                box-sizing: border-box !important;
+                overflow: hidden !important;
+            }
+
+            .card-body {
+                padding: 1rem !important;
+                overflow-x: auto !important;
+            }
+
+            /* Table: scroll horizontally inside card */
+            .table {
+                min-width: 480px;
+            }
+
+            /* Wrap long text */
+            .topbar-title,
+            .card-title,
+            h1,
+            h2,
+            h3,
+            h4,
+            p {
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+
+            /* Dashboard flex wrapper */
+            .dashboard {
+                flex-direction: column !important;
+            }
+        }
+
+        /* Extra-small 360px tweaks */
+        @media (max-width: 400px) {
+            .topbar {
+                padding: 0.625rem 0.875rem !important;
+            }
+
+            .content-area {
+                padding: 0.75rem !important;
+            }
+
+            .stat-card {
+                padding: 1rem !important;
+            }
+
+            .stat-card-value {
+                font-size: 1.5rem !important;
+            }
+
+            .topbar-title {
+                font-size: 0.9rem !important;
+                max-width: 150px;
+            }
+        }
+
+        /* Scoped Admin Header CTA - Professional Dashboard Sizing */
+        .admin-dashboard .topbar-actions .btn {
+            padding: 0.5rem 1.25rem !important;
+            font-size: 0.875rem !important;
+            font-weight: 500 !important;
+            height: auto !important;
+            min-height: unset !important;
+            border-radius: 8px !important;
+            gap: 0.5rem !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .admin-dashboard .topbar-actions .btn:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(13, 92, 99, 0.15) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard admin-dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">Jeevan Foundation</a>
+                <span class="sidebar-badge">Admin</span>
+            </div>
+            <div class="sidebar-nav-container">
+                <nav>
+                    <ul class="sidebar-nav">
+                        <li>
+                            <a href="admin-dashboard.html">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                </svg>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="sidebar-section">Management</li>
+                        <li>
+                            <a href="donations.html" class="sidebar-link">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Donations
+                            </a>
+                        </li>
+                        <li>
+                            <a href="volunteers.html" class="sidebar-link">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Volunteers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="events.html">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                Events
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="avatarInitials">A</div>
+                    <div>
+                        <div class="user-name" id="userNameDisplay">Admin</div>
+                        <div class="user-role">Super Admin</div>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Sign Out</button>
+            </div>
+        </aside>
+
+        <!-- Sidebar Overlay (Mobile) -->
+        <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="topbar">
+                <button class="menu-toggle" onclick="toggleAdminSidebar()" aria-label="Toggle Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h1 class="topbar-title">Dashboard Overview</h1>
+                <div class="topbar-actions">
+
+                    <a href="index.html" class="btn btn-primary">Home</a>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-card-value" id="adminTotalDonations"></div>
+                                <div class="stat-card-label">Total Donations</div>
+                                <!-- Trend removed as per strict dynamic rules -->
+                            </div>
+                            <div class="stat-card-icon primary">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-card-value" id="adminTotalDonors">0</div>
+                                <div class="stat-card-label">Total Donors</div>
+                                <!-- Trend removed as per strict dynamic rules -->
+                            </div>
+                            <div class="stat-card-icon info">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-card-value" id="adminActiveVolunteers">0</div>
+                                <div class="stat-card-label">Active Volunteers</div>
+                                <!-- Trend removed as per strict dynamic rules -->
+                            </div>
+                            <div class="stat-card-icon accent">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-card-value" id="adminActiveCampaigns">0</div>
+                                <div class="stat-card-label">Active Campaigns</div>
+                                <!-- Trend removed as per strict dynamic rules -->
+                            </div>
+                            <div class="stat-card-icon success">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <!-- Recent Donations -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Donations</h2>
+                            <a href="#" style="color: var(--primary); font-size: 0.875rem; font-weight: 500;">View
+                                All</a>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Donor</th>
+                                        <th>Amount</th>
+                                        <th>Campaign</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminDonationsTable">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="src/js/auth.js"></script>
+    <script src="src/js/main.js"></script>
+    <script src="src/js/data.js"></script>
+    <script src="src/js/admin-data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if admin is logged in (simulation)
+            if (!Auth.isAuthenticated() || !Auth.isAdmin()) {
+                // Not authenticated or not an admin - redirect
+                alert('Access Denied: Admin privileges required.');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const user = Auth.getUser();
+
+            // Populate User Info in Sidebar
+            const sidebarAvatar = document.getElementById('avatarInitials');
+            const sidebarName = document.getElementById('userNameDisplay');
+
+            if (sidebarAvatar) sidebarAvatar.textContent = Auth.getInitials();
+            if (sidebarName && user) sidebarName.textContent = user.firstName + (user.lastName ? ' ' + user.lastName : '');
+
+            // Set Active Menu Highlight
+            setActiveAdminMenu();
+
+            // Navigation Debug Check
+            document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    console.log(`Navigation click: ${this.textContent.trim()} -> ${this.getAttribute('href')}`);
+                });
+            });
+
+            // Load Admin Data
+            renderDashboard();
+        });
+
+        /**
+         * Robust sidebar active state highlighter
+         */
+        function setActiveAdminMenu() {
+            const currentPath = window.location.pathname.split('/').pop() || 'admin-dashboard.html';
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && (href === currentPath || (currentPath === '' && href === 'admin-dashboard.html'))) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+
+        function renderDashboard() {
+            // fetch fresh data
+            const stats = AdminData.getGlobalStats();
+
+            // Update Stats
+            document.getElementById('adminTotalDonations').textContent = AdminData.formatCurrency(stats.totalDonations || 0);
+            document.getElementById('adminTotalDonors').textContent = (stats.totalDonors || 0).toLocaleString();
+            document.getElementById('adminActiveVolunteers').textContent = (stats.activeVolunteers || 0).toLocaleString();
+            document.getElementById('adminActiveCampaigns').textContent = (stats.activeCampaigns || 0).toLocaleString();
+
+            // Update Recent Donations Table
+            const donationsTable = document.getElementById('adminDonationsTable');
+            const recentDonations = AdminData.getAllDonations(10); // get last 10
+
+            donationsTable.innerHTML = ''; // Clear loading state
+
+            if (recentDonations.length === 0) {
+                donationsTable.innerHTML = `
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                            No donations recorded yet.
+                        </td>
+                    </tr>
+                `;
+            } else {
+                recentDonations.forEach(donation => {
+                    const row = document.createElement('tr');
+
+                    const date = new Date(donation.date).toLocaleDateString();
+
+                    row.innerHTML = `
+                        <td>
+                            <div class="donor-info">
+                                <div class="donor-avatar">${donation.donorAvatar || 'G'}</div>
+                                <div>
+                                    <div style="font-weight: 500;">${donation.donorName}</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted);">${donation.email}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="font-weight: 600;">${AdminData.formatCurrency(donation.amount)}</td>
+                        <td>${donation.cause || donation.campaign || 'General'}</td>
+                        <td><span class="status-badge completed">Completed</span></td>
+                    `;
+                    donationsTable.appendChild(row);
+                });
+            }
+        }
+    </script>
+    <script>
+        function toggleAdminSidebar() {
+            const sidebar = document.getElementById('adminSidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            if (sidebar && overlay) {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+            }
+        }
+        function closeSidebar() {
+            const sidebar = document.getElementById('adminSidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            if (sidebar && overlay) {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+    </script>
+</body>
+
+</html>

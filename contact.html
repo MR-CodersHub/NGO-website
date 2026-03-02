@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Jeevan Foundation</title>
+    <link rel="icon" type="icon/png" href="./assets/img/favicon.ico.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Rubik:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="src/css/style.css">
+    <style>
+        @media (max-width: 767px) {
+            .hero {
+                min-height: auto !important;
+                padding-top: 100px !important;
+                padding-bottom: 40px !important;
+            }
+
+            .card-body {
+                padding: 1.5rem !important;
+            }
+
+            h1 {
+                font-size: 2.25rem !important;
+            }
+        }
+
+        .nav-links .active {
+            color: orange !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Nav -->
+    <nav class="nav">
+        <div class="wrap nav-inner">
+            <a href="index.html" class="nav-logo">Jeevan Foundation</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="home2.html">Home2</a>
+                <a href="about.html">About</a>
+                <a href="causes.html">Causes</a>
+                <a href="events.html">Events</a>
+                <a href="blog.html">Stories</a>
+                <a href="contact.html" class="active">Contact</a>
+                <a href="donate.html">Donate</a>
+
+                </div>
+            <div class="nav-actions">
+                <div class="profile-wrapper">
+                    <button class="profile-btn" id="profileBtn" onclick="toggleProfileDropdown(event)">
+                        <span id="avatarInitials">D</span>
+                    </button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div id="guestMenu">
+                            <div class="dropdown-menu">
+                                <a href="login.html" class="dropdown-item">Login</a>
+                                <a href="signup.html" class="dropdown-item primary">Join Us</a>
+                            </div>
+                        </div>
+                        <div id="userMenu" style="display: none;">
+                            <div class="dropdown-menu">
+                                <a href="user-dashboard.html" class="dropdown-item">Dashboard</a>
+                                <div class="dropdown-divider"></div>
+                                <button class="dropdown-item danger" onclick="handleLogout()">Sign Out</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="nav-toggle" onclick="toggleMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobMenu" class="mob-menu">
+        <header class="mob-header">
+            <a href="index.html" class="mob-logo-box">Jeevan Foundation</a>
+            <button class="mob-close" onclick="toggleMenu()" aria-label="Close Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </header>
+
+        <div class="mob-body">
+            <a href="index.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                Home
+            </a>
+            <a href="home2.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v18h18" />
+                    <path d="m19 9-5 5-4-4-3 3" />
+                </svg>
+                Home2
+            </a>
+            <a href="about.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4" />
+                    <path d="M12 8h.01" />
+                </svg>
+                About
+            </a>
+            <a href="causes.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                </svg>
+                Causes
+            </a>
+            <a href="events.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Events
+            </a>
+            <a href="blog.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                </svg>
+                Stories
+            </a>
+            <a href="contact.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                Contact
+            </a>
+            <a href="donate.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+                Donate
+            </a>
+        </div>
+
+        <div class="mob-footer">
+            <div id="mobGuestLinks">
+                <a href="donate.html" class="mob-action-btn primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                    </svg>
+                    Support Our Mission
+                </a>
+                <a href="login.html" class="mob-action-btn secondary">Join the Community</a>
+            </div>
+            <div id="mobUserLinks" style="display: none;">
+                <a href="donate.html" class="mob-action-btn primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                    </svg>
+                    Quick Donation
+                </a>
+                <a href="user-dashboard.html" class="mob-action-btn secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="7" height="9" x="3" y="3" rx="1" />
+                        <rect width="7" height="5" x="14" y="3" rx="1" />
+                        <rect width="7" height="9" x="14" y="12" rx="1" />
+                        <rect width="7" height="5" x="3" y="16" rx="1" />
+                    </svg>
+                    My Impact Dashboard
+                </a>
+                <button onclick="handleLogout()" class="mob-action-btn danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
+                    Sign Out
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero"
+        style="min-height: 35vh; display: flex; align-items: center; background: var(--white); position: relative; overflow: hidden;">
+        <div class="hero-blob hero-blob-2" style="background: var(--primary); opacity: 0.04;"></div>
+        <div class="wrap" style="position: relative; z-index: 2;">
+            <div class="tac">
+                <span class="badge mb-4">The Jeevan Network</span>
+                <h1 class="mb-6">Global Presence. Local Action.</h1>
+                <p class="mxa" style="color: var(--text-muted); font-size: 1.25rem; max-width: 60ch; line-height: 1.6;">
+                    Whether you are an institutional partner, a potential volunteer, or a community leader—we are ready
+                    to coordinate.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec" style="padding-top: 3em;">
+        <div class="wrap">
+            <div class="g2" style="align-items: start;">
+                <div class="card"
+                    style="box-shadow: 0 40px 100px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03);">
+                    <div class="card-body" style="padding: 2.5rem;">
+                        <h2 class="mb-2">Direct Inquiry</h2>
+                        <p class="mb-10" style="color: var(--text-muted);">Our global coordination team monitors this
+                            channel 24/7.</p>
+                        <form id="contactForm">
+                            <div
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                                <div>
+                                    <label
+                                        style="display: block; font-weight: 700; margin-bottom: 0.75rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary);">First
+                                        Name</label>
+                                    <input type="text" required placeholder="Jane"
+                                        style="width: 100%; padding: 1.25rem; border: 2px solid #f3f4f6; border-radius: 12px; font-weight: 600; outline: none; transition: 0.3s; background: #f9fafb;">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display: block; font-weight: 700; margin-bottom: 0.75rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary);">Last
+                                        Name</label>
+                                    <input type="text" required placeholder="Doe"
+                                        style="width: 100%; padding: 1.25rem; border: 2px solid #f3f4f6; border-radius: 12px; font-weight: 600; outline: none; transition: 0.3s; background: #f9fafb;">
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1.5rem;">
+                                <label
+                                    style="display: block; font-weight: 700; margin-bottom: 0.75rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary);">Corporate
+                                    Email</label>
+                                <input type="email" required placeholder="jane.doe@organization.org"
+                                    style="width: 100%; padding: 1.25rem; border: 2px solid #f3f4f6; border-radius: 12px; font-weight: 600; outline: none; transition: 0.3s; background: #f9fafb;">
+                            </div>
+                            <div style="margin-bottom: 1.5rem;">
+                                <label
+                                    style="display: block; font-weight: 700; margin-bottom: 0.75rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary);">Primary
+                                    Objective</label>
+                                <select required
+                                    style="width: 100%; padding: 1.25rem; border: 2px solid #f3f4f6; border-radius: 12px; font-weight: 600; outline: none; transition: 0.3s; background: #f9fafb; appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230D5C63%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1.25rem center; background-size: 1.25rem;">
+                                    <option value="">Select an objective</option>
+                                    <option>Strategic Global Partnership</option>
+                                    <option>Volunteer Deployment Inquiry</option>
+                                    <option>Corporate Philanthropy</option>
+                                    <option>Press & Media Inquiry</option>
+                                    <option>Regional Operations Support</option>
+                                </select>
+                            </div>
+                            <div style="margin-bottom: 2rem;">
+                                <label
+                                    style="display: block; font-weight: 700; margin-bottom: 0.75rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary);">Detailed
+                                    Brief</label>
+                                <textarea rows="6" required placeholder="Provide a detailed overview of your inquiry..."
+                                    style="width: 100%; padding: 1.25rem; border: 2px solid #f3f4f6; border-radius: 12px; font-weight: 600; outline: none; transition: 0.3s; background: #f9fafb; resize: vertical;"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-full"
+                                style="height: 64px; font-size: 1.125rem; box-shadow: 0 20px 40px rgba(13,92,99,0.15);">Initiate
+                                Communication</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="mb-6">Contact Information</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem;">
+                        <div style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                            <div
+                                style="width: 44px; height: 44px; background: var(--beige); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary); flex-shrink: 0;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4
+                                    style="font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; color: var(--primary);">
+                                    Head Office</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.5;">123 Charity
+                                    Lane<br>Mumbai, India</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                            <div
+                                style="width: 44px; height: 44px; background: var(--beige); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary); flex-shrink: 0;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4
+                                    style="font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; color: var(--primary);">
+                                    Phone</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.5;">+91 22 1234
+                                    5678<br>Mon-Fri: 9AM - 6PM</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                            <div
+                                style="width: 44px; height: 44px; background: var(--beige); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary); flex-shrink: 0;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                    </path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4
+                                    style="font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; color: var(--primary);">
+                                    Email</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.5;">
+                                    info@jeevan.org<br>volunteer@jeevan.org</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="background: var(--primary);">
+                        <div class="card-body">
+                            <h4 style="color: white; font-weight: 600; margin-bottom: 0.5rem;">Follow Us</h4>
+                            <p style="color: rgba(255,255,255,0.9); font-size: 0.9375rem; margin-bottom: 1.5rem;">Stay
+                                connected for daily
+                                updates and stories.</p>
+
+                            <div style="display: flex; gap: 1rem;">
+                                <!-- Facebook -->
+                                <a href="#" style="color: white; opacity: 0.8; transition: opacity 0.2s;"
+                                    onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                                    </svg>
+                                </a>
+                                <!-- Twitter/X -->
+                                <a href="#" style="color: white; opacity: 0.8; transition: opacity 0.2s;"
+                                    onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                    </svg>
+                                </a>
+                                <!-- Instagram -->
+                                <a href="#" style="color: white; opacity: 0.8; transition: opacity 0.2s;"
+                                    onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                    </svg>
+                                </a>
+                                <!-- LinkedIn -->
+                                <a href="#" style="color: white; opacity: 0.8; transition: opacity 0.2s;"
+                                    onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec sec-beige">
+        <div class="wrap tac">
+            <span class="badge mb-4">Operational Infrastructure</span>
+            <h2 class="mb-10">Regional Coordination Hubs</h2>
+            <div class="g3">
+                <div class="card" style="text-align: left; padding: 2rem;">
+                    <div style="margin-bottom: 1.5rem; color: var(--primary);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="mb-2">Sub-Saharan Africa</h3>
+                    <p style="color: var(--primary); font-weight: 700; font-size: 0.875rem; margin-bottom: 0.75rem;">
+                        Nairobi Regional Hub</p>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.5;">Coordinating 450+ active
+                        water & agri-tech projects across 18 nations.</p>
+                    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.05);">
+                        <a href="mailto:africa@jeevan.org"
+                            style="font-size: 0.8125rem; color: var(--primary); font-weight: 600; text-decoration: none;">africa@jeevan.org</a>
+                    </div>
+                </div>
+                <div class="card" style="text-align: left; padding: 2rem;">
+                    <div style="margin-bottom: 1.5rem; color: var(--primary);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="mb-2">Asia-Pacific</h3>
+                    <p style="color: var(--primary); font-weight: 700; font-size: 0.875rem; margin-bottom: 0.75rem;">
+                        Bangkok Coordination Center</p>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.5;">Prioritizing mobile
+                        healthcare and vocational digital training for 12 nations.</p>
+                    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.05);">
+                        <a href="mailto:asia@jeevan.org"
+                            style="font-size: 0.8125rem; color: var(--primary); font-weight: 600; text-decoration: none;">asia@jeevan.org</a>
+                    </div>
+                </div>
+                <div class="card" style="text-align: left; padding: 2rem;">
+                    <div style="margin-bottom: 1.5rem; color: var(--primary);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 13s9 7 9 7 9-7 9-7"></path>
+                            <path d="M2 7s9 7 9 7 9-7 9-7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="mb-2">Latin America</h3>
+                    <p style="color: var(--primary); font-weight: 700; font-size: 0.875rem; margin-bottom: 0.75rem;">São
+                        Paulo Strategic Hub</p>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.5;">Focused on sustainable
+                        infrastructure and biodiversity protection programs.</p>
+                    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.05);">
+                        <a href="mailto:latam@jeevan.org"
+                            style="font-size: 0.8125rem; color: var(--primary); font-weight: 600; text-decoration: none;">latam@jeevan.org</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Institutional Partnership -->
+    <section class="sec" style="background: var(--primary); color: white;">
+        <div class="wrap">
+            <div class="g2 aic">
+                <div>
+                    <span class="badge mb-4" style="background: var(--accent); color: var(--dark); border: none;">For
+                        Corporations & NGOs</span>
+                    <h2 style="color: white; margin-bottom: 1.5rem;">Scale Your Impact with Jeevan.</h2>
+                    <p
+                        style="color: rgba(255,255,255,0.8); font-size: 1.125rem; line-height: 1.6; margin-bottom: 2rem;">
+                        We provide the ground-level infrastructure for institutional partners to deploy capital
+                        efficiently. Join our network of 40+ global entities.</p>
+                    <a href="mailto:partners@jeevan.org" class="btn btn-white">Request Partnership Deck</a>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.05); padding: 3rem; border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.1);">
+                    <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem;">
+                        <li style="display: flex; align-items: flex-start; gap: 1rem;">
+                            <div style="color: var(--accent);"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg></div>
+                            <p style="font-weight: 500;">Direct verified field implementation across 42 nations.</p>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 1rem;">
+                            <div style="color: var(--accent);"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg></div>
+                            <p style="font-weight: 500;">Audited financial reporting and impact verification.</p>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 1rem;">
+                            <div style="color: var(--accent);"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg></div>
+                            <p style="font-weight: 500;">Shared resources and cross-border logistical support.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec">
+        <div class="wrap" style="max-width: 800px; margin-bottom: 2em;">
+            <div class="tac mb-12">
+                <span class="badge mb-4">Support & FAQ</span>
+                <h2>Frequently Asked Questions</h2>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Quick answers for our partners and volunteers.
+                </p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <div class="card" style="border: 1px solid #f3f4f6;">
+                    <div class="card-body" style="padding: 2rem;">
+                        <h4 class="mb-3" style="font-size: 1.125rem; color: var(--primary);">How do you select your
+                            regional project hubs?</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6;">We conduct
+                            deep-level socio-economic audits and engage with indigenous community leaders for 6-12
+                            months before establishing a permanent coordinate hub.</p>
+                    </div>
+                </div>
+                <div class="card" style="border: 1px solid #f3f4f6;">
+                    <div class="card-body" style="padding: 2rem;">
+                        <h4 class="mb-3" style="font-size: 1.125rem; color: var(--primary);">What is the Handover
+                            Protocol for completed projects?</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6;">Once a community
+                            achieves financial and technical autonomy, we exit operational control, remaining solely as
+                            an advisory partner with quarterly oversight.</p>
+                    </div>
+                </div>
+                <div class="card" style="border: 1px solid #f3f4f6;">
+                    <div class="card-body" style="padding: 2rem;">
+                        <h4 class="mb-3" style="font-size: 1.125rem; color: var(--primary);">Can institutional partners
+                            direct capital to specific clusters?</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6;">Yes. While our
+                            general fund handles urgent relief, partners can specify clusters like Solar Water, Mobile
+                            Health, or Vocational Digital Training.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer class="footer-sec">
+        <div class="wrap">
+            <div class="footer-top">
+                <!-- Column 1: Brand + Trust -->
+                <div class="footer-brand-col">
+                    <h5 class="footer-logo">Jeevan Foundation</h5>
+                    <p class="footer-desc">Sustainable development through education, healthcare, and livelihoods.</p>
+                    <div class="footer-contact-info">
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                            <a href="mailto:contact@jeevan.org">contact@jeevan.org</a>
+                        </p>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <a href="tel:+912212345678">+91 22 1234 5678</a>
+                        </p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Explore -->
+                <div class="footer-links-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="causes.html">Causes</a></li>
+                        <li><a href="home2.html">Home2</a></li>
+                        <li><a href="blog.html">Stories</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Get Involved -->
+                <div class="footer-links-col">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="contact.html">Volunteer</a></li>
+                        <li><a href="contact.html">Partner With Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Stay Connected -->
+                <div class="footer-newsletter">
+                    <h4>Stay Connected</h4>
+                    <p>Get impact updates and field stories.</p>
+                    <form class="footer-form">
+                        <label for="footer-email" style="display: none;">Email Address</label>
+                        <input type="email" id="footer-email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-footer">Subscribe</button>
+                    </form>
+                    <p class="footer-micro">We respect your inbox. Unsubscribe anytime.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Jeevan Foundation · Registered Nonprofit</p>
+                <div class="footer-bottom-links">
+                    <a href="policy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>document.getElementById('contactForm').addEventListener('submit', function (e) { e.preventDefault(); alert('Thank you for your message!'); this.reset(); });</script>
+    <script src="src/js/auth.js"></script>
+    <script src="src/js/main.js"></script>
+</body>
+
+</html>
+
+
+

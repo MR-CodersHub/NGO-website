@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Governance - Jeevan Foundation</title>
+    <link rel="icon" type="icon/png" href="./assets/img/favicon.ico.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Rubik:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="src/css/style.css">
+    <style>
+        :root {
+            --section-gap: 64px;
+            --inner-gap: 48px;
+            --micro-gap: 32px;
+            --btn-radius: 8px;
+            /* Standardized radius */
+        }
+
+        .hero-trust-bar {
+            display: inline-flex;
+            gap: 2rem;
+            padding: 1rem 2rem;
+            background: var(--cream);
+            border-radius: 100px;
+            margin-top: 2rem;
+            align-items: center;
+        }
+
+        .dn-mobile {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .dn-mobile {
+                display: none;
+            }
+
+            .hero-trust-bar {
+                flex-direction: column;
+                gap: 1.5rem;
+                border-radius: 20px;
+                padding: 1.5rem;
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem !important;
+            }
+
+            .official-table-row {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .impact-stats-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-color: var(--primary);
+        }
+
+        .pipeline-line {
+            position: absolute;
+            left: 50%;
+            top: 60px;
+            bottom: 60px;
+            width: 2px;
+            background: var(--beige);
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .impact-card {
+            background: var(--white);
+            border: 1px solid var(--beige);
+            border-radius: var(--btn-radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .btn {
+            border-radius: var(--btn-radius) !important;
+        }
+
+        .official-table-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: var(--white);
+            border: 1px solid var(--beige);
+            border-radius: var(--btn-radius);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .official-table-row:hover {
+            background: var(--cream);
+            border-color: var(--primary);
+        }
+
+        .resilience-img {
+            filter: saturate(0.85) contrast(0.9);
+            border-radius: 1rem;
+            width: 100%;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--beige);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Nav -->
+    <nav class="nav">
+        <div class="wrap nav-inner">
+            <a href="index.html" class="nav-logo">Jeevan Foundation</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="home2.html">Home2</a>
+                <a href="about.html">About</a>
+                <a href="causes.html">Causes</a>
+                <a href="events.html">Events</a>
+                <a href="blog.html">Stories</a>
+                <a href="contact.html">Contact</a>
+                <a href="donate.html">Donate</a>
+
+                </div>
+            <div class="nav-actions">
+                <div class="profile-wrapper">
+                    <button class="profile-btn" id="profileBtn" onclick="toggleProfileDropdown(event)">
+                        <span id="avatarInitials">D</span>
+                    </button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div id="guestMenu">
+                            <div class="dropdown-menu">
+                                <a href="login.html" class="dropdown-item">Login</a>
+                                <a href="signup.html" class="dropdown-item primary">Join Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="nav-toggle" onclick="toggleMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobMenu" class="mob-menu">
+        <header class="mob-header">
+            <a href="index.html" class="mob-logo-box">Jeevan Foundation</a>
+            <button class="mob-close" onclick="toggleMenu()" aria-label="Close Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </header>
+
+        <div class="mob-body">
+            <a href="index.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                Home
+            </a>
+            <a href="home2.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v18h18" />
+                    <path d="m19 9-5 5-4-4-3 3" />
+                </svg>
+                Home2
+            </a>
+            <a href="about.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4" />
+                    <path d="M12 8h.01" />
+                </svg>
+                About
+            </a>
+            <a href="causes.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                </svg>
+                Causes
+            </a>
+            <a href="events.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Events
+            </a>
+            <a href="blog.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                </svg>
+                Stories
+            </a>
+            <a href="contact.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                Contact
+            </a>
+            <a href="donate.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+                Donate
+            </a>
+        </div>
+
+        <div class="mob-footer">
+            <div id="mobGuestLinks">
+                <a href="donate.html" class="mob-action-btn primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                    </svg>
+                    Support Our Mission
+                </a>
+                <a href="login.html" class="mob-action-btn secondary">Join the Community</a>
+            </div>
+            <div id="mobUserLinks" style="display: none;">
+                <a href="donate.html" class="mob-action-btn primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                    </svg>
+                    Quick Donation
+                </a>
+                <a href="user-dashboard.html" class="mob-action-btn secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="7" height="9" x="3" y="3" rx="1" />
+                        <rect width="7" height="5" x="14" y="3" rx="1" />
+                        <rect width="7" height="9" x="14" y="12" rx="1" />
+                        <rect width="7" height="5" x="3" y="16" rx="1" />
+                    </svg>
+                    My Impact Dashboard
+                </a>
+                <button onclick="handleLogout()" class="mob-action-btn danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
+                    Sign Out
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero: Absolute Authority -->
+    <section class="hero"
+        style="min-height: 65vh; display: flex; align-items: center; background: var(--white); position: relative; overflow: hidden;">
+        <div class="hero-blob hero-blob-2" style="background: var(--primary); opacity: 0.04;"></div>
+        <div class="wrap" style="position: relative; z-index: 2;">
+            <div class="tac">
+                <span class="badge mb-6"
+                    style="background: rgba(13, 92, 99, 0.05); color: var(--primary); letter-spacing: 0.1em; font-weight: 700;">INSTITUTIONAL
+                    GOVERNANCE</span>
+                <h1 class="mb-8"
+                    style="font-size: clamp(3.5rem, 8vw, 6rem); line-height: 0.95; letter-spacing: -0.04em; max-width: 15ch; margin-left: auto; margin-right: auto;">
+                    Deploying Capital with <span style="color: var(--primary);">Integrity.</span></h1>
+                <p class="mxa mb-10"
+                    style="color: var(--text-muted); font-size: 1.35rem; max-width: 55ch; line-height: 1.6;">We
+                    transform philanthropy into a disciplined development vehicle. Our model ensures every dollar is
+                    verified and converted into regional resilience.</p>
+
+                <div
+                    style="display: inline-flex; gap: 3rem; padding: 1.5rem 3rem; background: var(--cream); border-radius: 100px; align-items: center; border: 1px solid rgba(0,0,0,0.05);">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
+                            stroke-width="2.5">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <span
+                            style="font-weight: 800; font-size: 0.8125rem; color: var(--primary); letter-spacing: 0.05em;">94%
+                            EFFICIENCY</span>
+                    </div>
+                    <div style="width: 1px; height: 24px; background: rgba(0,0,0,0.1);"></div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
+                            stroke-width="2.5">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 8v4l3 3"></path>
+                        </svg>
+                        <span
+                            style="font-weight: 800; font-size: 0.8125rem; color: var(--primary); letter-spacing: 0.05em;">VERIFIED
+                            BY PWC</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Methodology (Data-Driven Development) -->
+    <section class="sec" style="padding: var(--section-gap) 0; background: var(--cream);">
+        <div class="wrap">
+            <div class="g2 aic" style="gap: var(--inner-gap);">
+                <div>
+                    <span class="badge mb-4" style="background: var(--primary); color: var(--white); border: none;">OUR
+                        METHODOLOGY</span>
+                    <h2 class="mb-4" style="font-size: clamp(2.5rem, 5vw, 3.25rem); line-height: 1.1;">Data-Driven
+                        Development</h2>
+                    <p class="mb-8"
+                        style="color: var(--text-muted); font-size: 1.125rem; line-height: 1.7; max-width: 50ch;">
+                        Impact isn't a byproduct; it's a planned outcome. Our proprietary **Resilience Index** evaluates
+                        14 economic and social indicators to identify regions where investment achieves maximum
+                        compounding results.
+                    </p>
+                    <div style="display: grid; gap: 1.5rem;">
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <div
+                                style="width: 32px; height: 32px; background: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white"
+                                    stroke-width="3.5">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1.1rem; margin-bottom: 4px; font-weight: 700;">Evidence-Based
+                                    Selection</h4>
+                                <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.5;">Independent
+                                    algorithmic evaluations guide 100% of regional funding decisions based on baseline
+                                    poverty data.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <div
+                                style="width: 32px; height: 32px; background: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white"
+                                    stroke-width="3.5">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1.1rem; margin-bottom: 4px; font-weight: 700;">Quarterly
+                                    Rebalancing</h4>
+                                <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.5;">Ongoing
+                                    audits ensure resources scale alongside community growth, preventing capital
+                                    stagnation in mature projects.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <div
+                                style="width: 32px; height: 32px; background: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white"
+                                    stroke-width="3.5">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1.1rem; margin-bottom: 4px; font-weight: 700;">Impact Verification
+                                </h4>
+                                <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.5;">Final
+                                    results are verified by 3rd-party ground observers before the project enters a
+                                    self-sustaining maintenance phase.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 100%;">
+                    <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=800&h=600&fit=crop"
+                        class="resilience-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Accountability Pipeline -->
+    <section class="sec" style="padding: 100px 0;">
+        <div class="wrap">
+            <div class="tac mb-20">
+                <span class="badge mb-4" style="background: rgba(13, 92, 99, 0.05); color: var(--primary);">THE
+                    PIPELINE</span>
+                <h2 style="font-size: 3rem; margin-bottom: 1rem;">The Accountability Pipeline</h2>
+                <p class="mxa" style="max-width: 55ch; color: var(--text-muted); font-size: 1.125rem;">A linear,
+                    bulletproof system from contribution to grandmother verification.</p>
+            </div>
+
+            <div style="position: relative; max-width: 1000px; margin: 0 auto;">
+                <div style="position: absolute; left: 50%; top: 60px; bottom: 60px; width: 2px; background: #e5e7eb; transform: translateX(-50%);"
+                    class="dn-mobile"></div>
+
+                <div style="display: flex; flex-direction: column; gap: 6rem;">
+                    <!-- Step 1 -->
+                    <div style="display: flex; align-items: center; gap: 4rem; position: relative;">
+                        <div style="flex: 1; text-align: right;" class="dn-mobile">
+                            <h4
+                                style="font-size: 1.25rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">
+                                Ledger Entry</h4>
+                            <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.6;">Instant
+                                assignment of unique digital tracking IDs to every transaction confirmed by Stripe.</p>
+                        </div>
+                        <div
+                            style="width: 64px; height: 64px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--numbers); font-size: 1.5rem; font-weight: 800; flex-shrink: 0; box-shadow: 0 0 0 12px var(--white); position: relative; z-index: 2;">
+                            01</div>
+                        <div style="flex: 1;">
+                            <div
+                                style="background: var(--cream); padding: 2rem; border-radius: 1.5rem; border: 1px solid rgba(0,0,0,0.03);">
+                                <h4 style="margin-bottom: 0.5rem; font-size: 1.125rem;">Digital Signature</h4>
+                                <p style="font-size: 0.875rem; color: var(--text-muted);">Immutable record creation
+                                    across our global transparency portal.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div
+                        style="display: flex; align-items: center; gap: 4rem; position: relative; flex-direction: row-reverse;">
+                        <div style="flex: 1; text-align: left;" class="dn-mobile">
+                            <h4
+                                style="font-size: 1.25rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">
+                                Regional Clearing</h4>
+                            <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.6;">Direct transfer
+                                to governed project accounts within 72 hours via regional banking partners.</p>
+                        </div>
+                        <div
+                            style="width: 64px; height: 64px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--numbers); font-size: 1.5rem; font-weight: 800; flex-shrink: 0; box-shadow: 0 0 0 12px var(--white); position: relative; z-index: 2;">
+                            02</div>
+                        <div style="flex: 1;">
+                            <div
+                                style="background: var(--cream); padding: 2rem; border-radius: 1.5rem; border: 1px solid rgba(0,0,0,0.03);">
+                                <h4 style="margin-bottom: 0.5rem; font-size: 1.125rem;">Ground Coordination</h4>
+                                <p style="font-size: 0.875rem; color: var(--text-muted);">Lead technicians in Nairobi or
+                                    Bangkok receive allocation metadata.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div style="display: flex; align-items: center; gap: 4rem; position: relative;">
+                        <div style="flex: 1; text-align: right;" class="dn-mobile">
+                            <h4
+                                style="font-size: 1.25rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">
+                                Impact Verification</h4>
+                            <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.6;">Final result
+                                audits are conducted by third-party observers before closure certificates are issued.
+                            </p>
+                        </div>
+                        <div
+                            style="width: 64px; height: 64px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--numbers); font-size: 1.5rem; font-weight: 800; flex-shrink: 0; box-shadow: 0 0 0 12px var(--white); position: relative; z-index: 2;">
+                            03</div>
+                        <div style="flex: 1;">
+                            <div
+                                style="background: var(--cream); padding: 2rem; border-radius: 1.5rem; border: 1px solid rgba(0,0,0,0.03);">
+                                <h4 style="margin-bottom: 0.5rem; font-size: 1.125rem;">Immutable Report</h4>
+                                <p style="font-size: 0.875rem; color: var(--text-muted);">A comprehensive impact deck is
+                                    generated and archived for public disclosure.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Guardian Circle (High Ask / Warmed) -->
+    <section class="sec" style="padding: var(--section-gap) 0; background: var(--dark); color: white;">
+        <div class="wrap">
+            <div class="g2 aic" style="gap: 4rem;">
+                <div>
+                    <span class="badge mb-4"
+                        style="background: var(--accent); color: var(--dark); border: none;">RECURRING IMPACT</span>
+                    <h2 style="color: white; font-size: 3rem; margin-bottom: 1.5rem;">The Guardian Circle</h2>
+                    <p class="mb-10"
+                        style="color: rgba(255,255,255,0.7); font-size: 1.125rem; line-height: 1.8; max-width: 50ch;">
+                        Our core mission requires predictable capital. Becoming a Guardian allows us to commit to 3-year
+                        regional development plans without disruption.
+                    </p>
+
+                    <div
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+                        <div>
+                            <p
+                                style="font-weight: 700; font-size: 1.75rem; color: var(--accent); font-family: var(--numbers); margin-bottom: 4px;">
+                                $100 /mo</p>
+                            <p style="font-size: 0.8125rem; font-weight: 600; color: white; margin-bottom: 4px;">
+                                Institutional Anchor</p>
+                            <p style="font-size: 0.75rem; color: rgba(255,255,255,0.4);">Enables teacher vocational
+                                training for 60 children annually.</p>
+                        </div>
+                        <div style="opacity: 0.7;">
+                            <p
+                                style="font-weight: 700; font-size: 1.75rem; color: white; font-family: var(--numbers); margin-bottom: 4px;">
+                                $25 /mo</p>
+                            <p style="font-size: 0.8125rem; font-weight: 600; color: white; margin-bottom: 4px;">
+                                Community Partner</p>
+                            <p style="font-size: 0.75rem; color: rgba(255,255,255,0.4);">Covers ongoing chemical
+                                filtration for 4 village water hubs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 3rem; border-radius: 1.5rem; text-align: center;">
+                    <h4 style="color: white; margin-bottom: 1rem; font-size: 1.25rem;">Primary Commitment Pathway</h4>
+                    <p style="font-size: 0.9375rem; color: rgba(255,255,255,0.6); margin-bottom: 2rem;">Direct your
+                        monthly support to our most urgent verified clusters.</p>
+                    <a href="donate.html" class="btn btn-primary w-full"
+                        style="padding: 1.25rem 0; background: var(--accent); color: var(--dark); border: none; font-weight: 700;">JOIN
+                        THE CIRCLE</a>
+                    <p style="margin-top: 1.5rem; font-size: 0.75rem; color: rgba(255,255,255,0.3);">Adjust or terminate
+                        contribution at any time via dashboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Programs (Scannable Cards) -->
+    <section class="sec" style="padding: 120px 0; background: var(--cream);">
+        <div class="wrap">
+            <div class="mb-16">
+                <span class="badge mb-4" style="background: var(--primary); color: white; border: none;">ACTIVE
+                    PORTFOLIO</span>
+                <h2 style="font-size: 3rem; margin-bottom: 1rem;">Impact Clusters</h2>
+                <p style="color: var(--text-muted); font-size: 1.125rem;margin-bottom: 1em;">Targeted funding vehicles
+                    for specialized infrastructure development pipelines.</p>
+            </div>
+
+            <div class="g3" style="gap: 2.5rem;">
+                <!-- Water -->
+                <div class="card"
+                    style="padding: 0; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); transition: 0.3s; background: var(--white);">
+                    <div style="height: 200px; position: relative; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&h=400&fit=crop"
+                            style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;">
+                        <div style="position: absolute; top: 1.5rem; right: 1.5rem;">
+                            <span class="badge"
+                                style="background: rgba(13,92,99,0.9); color: white; border: none; font-size: 0.7rem; backdrop-filter: blur(10px);">SOUTHEAST
+                                ASIA</span>
+                        </div>
+                    </div>
+                    <div style="padding: 2.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 8px; height: 8px; background: var(--primary); border-radius: 50%;"></div>
+                            <span
+                                style="font-size: 0.75rem; font-weight: 800; color: var(--primary); letter-spacing: 0.1em; text-transform: uppercase;">Infrastructure</span>
+                        </div>
+                        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Solar Water Purification</h4>
+                        <p
+                            style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6; margin-bottom: 2rem;">
+                            Strategic deployment of salt-filtration systems across 12 coastal clusters.</p>
+
+                        <div style="margin-bottom: 2rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                                <span
+                                    style="font-family: var(--numbers); font-size: 0.8125rem; font-weight: 700;">$38.9K
+                                    / $50K</span>
+                                <span
+                                    style="font-family: var(--numbers); font-size: 0.8125rem; font-weight: 800; color: var(--primary);">78%</span>
+                            </div>
+                            <div style="height: 6px; background: #f3f4f6; border-radius: 10px; overflow: hidden;">
+                                <div style="width: 78%; height: 100%; background: var(--primary); border-radius: 10px;">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="donate.html" class="btn btn-primary w-full"
+                            style="height: 52px; font-size: 0.875rem;">Support Cluster</a>
+                    </div>
+                </div>
+
+                <!-- Medical -->
+                <div class="card"
+                    style="padding: 0; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); transition: 0.3s; background: var(--white);">
+                    <div style="height: 200px; position: relative; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=800&h=400&fit=crop"
+                            style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;">
+                        <div style="position: absolute; top: 1.5rem; right: 1.5rem;">
+                            <span class="badge"
+                                style="background: rgba(13,92,99,0.9); color: white; border: none; font-size: 0.7rem; backdrop-filter: blur(10px);">SUB-SAHARAN
+                                AFRICA</span>
+                        </div>
+                    </div>
+                    <div style="padding: 2.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 8px; height: 8px; background: var(--primary); border-radius: 50%;"></div>
+                            <span
+                                style="font-size: 0.75rem; font-weight: 800; color: var(--primary); letter-spacing: 0.1em; text-transform: uppercase;">Medical
+                                Care</span>
+                        </div>
+                        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Maternal Health Units</h4>
+                        <p
+                            style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6; margin-bottom: 2rem;">
+                            Equipping mobile diagnostic vans with satellite-linked trauma kits.</p>
+
+                        <div style="margin-bottom: 2rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                                <span
+                                    style="font-family: var(--numbers); font-size: 0.8125rem; font-weight: 700;">$52.7K
+                                    / $70K</span>
+                                <span
+                                    style="font-family: var(--numbers); font-size: 0.8125rem; font-weight: 800; color: var(--primary);">75%</span>
+                            </div>
+                            <div style="height: 6px; background: #f3f4f6; border-radius: 10px; overflow: hidden;">
+                                <div style="width: 75%; height: 100%; background: var(--primary); border-radius: 10px;">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="donate.html" class="btn btn-primary w-full"
+                            style="height: 52px; font-size: 0.875rem;">Support Cluster</a>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="card"
+                    style="padding: 0; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); transition: 0.3s; background: var(--white);">
+                    <div style="height: 200px; position: relative; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=400&fit=crop"
+                            style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;">
+                        <div style="position: absolute; top: 1.5rem; right: 1.5rem;">
+                            <span class="badge"
+                                style="background: rgba(13,92,99,0.9); color: white; border: none; font-size: 0.7rem; backdrop-filter: blur(10px);">SOUTH
+                                ASIA</span>
+                        </div>
+                    </div>
+                    <div style="padding: 2.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 8px; height: 8px; background: var(--primary); border-radius: 50%;"></div>
+                            <span
+                                style="font-size: 0.75rem; font-weight: 800; color: var(--primary); letter-spacing: 0.1em; text-transform: uppercase;">Education</span>
+                        </div>
+                        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">STEM Scholarship Pool</h4>
+                        <p
+                            style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6; margin-bottom: 2rem;">
+                            Funding degree-level trajectories for exceptional regional talent.</p>
+
+                        <div style="margin-bottom: 2rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                                <span style="font-family: var(--numbers); font-size: 0.8125rem; font-weight: 700;">$65K
+                                    / $100K</span>
+                                <span
+                                    style="font-family: var(--numbers); font-size: 0.8125rem; font-weight: 800; color: var(--primary);">65%</span>
+                            </div>
+                            <div style="height: 6px; background: #f3f4f6; border-radius: 10px; overflow: hidden;">
+                                <div style="width: 65%; height: 100%; background: var(--primary); border-radius: 10px;">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="donate.html" class="btn btn-primary w-full"
+                            style="height: 52px; font-size: 0.875rem;">Support Cluster</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Financial Rigor (Official Trust Anchor) -->
+    <section class="sec"
+        style="padding: var(--section-gap) 0; background: var(--white); border-top: 1px solid var(--beige);">
+        <div class="wrap">
+            <div class="g2 aic" style="gap: 5rem;">
+                <div
+                    style="background: var(--primary); color: white; padding: 4rem; border-radius: 10px; border: 1px solid rgba(0,0,0,0.15); box-shadow: 0 30px 60px rgba(13,92,99,0.1);">
+                    <span class="badge mb-6"
+                        style="background: rgba(255,255,255,0.1); color: white; border: none; font-size: 0.75rem; letter-spacing: 0.1em; font-weight: 700;">EXTERNAL
+                        AUDIT DATA</span>
+                    <h2 style="color: white; font-size: 2.75rem; margin-bottom: 3rem; letter-spacing: -0.01em;">Fiscal
+                        Governance</h2>
+                    <div
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 3rem; margin-bottom: 3rem;">
+                        <div>
+                            <p
+                                style="font-family: var(--numbers); font-size: 3.5rem; font-weight: 700; color: var(--accent); margin: 0; line-height: 1;">
+                                94%</p>
+                            <p
+                                style="font-size: 0.7rem; opacity: 0.6; font-weight: 700; margin-top: 0.5rem; letter-spacing: 0.05em;">
+                                DIRECT IMPACT DELIVERY</p>
+                        </div>
+                        <div>
+                            <p
+                                style="font-family: var(--numbers); font-size: 3.5rem; font-weight: 700; color: var(--accent); margin: 0; line-height: 1;">
+                                06%</p>
+                            <p
+                                style="font-size: 0.7rem; opacity: 0.6; font-weight: 700; margin-top: 0.5rem; letter-spacing: 0.05em;">
+                                ADMINISTRATIVE RESERVE</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)"
+                            stroke-width="2.5" style="margin-top: 2px;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 8v4l3 3"></path>
+                        </svg>
+                        <p style="font-size: 0.8125rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Annual
+                            Disclosure — These metrics are verified by independent international oversight committees on
+                            a quarterly rolling basis.</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="mb-6" style="font-size: 2rem;">Compliance & Transparency</h3>
+                    <p class="mb-8" style="color: var(--text-muted); line-height: 1.8; font-size: 1rem;">We operate with
+                        the rigor of a public corporation. All operational expenses, regional transfers, and impact
+                        reports are immutable and available for public scrutiny.</p>
+
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <a href="#" class="official-table-row">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10 9 9 9 8 9"></polyline>
+                                </svg>
+                                <span style="font-weight: 700; color: var(--primary); font-size: 0.9375rem;">Fiscal Year
+                                    2025 Impact Audit</span>
+                            </div>
+                            <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted);">PDF ·
+                                VERIFIED</span>
+                        </a>
+                        <a href="#" class="official-table-row">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10 9 9 9 8 9"></polyline>
+                                </svg>
+                                <span style="font-weight: 700; color: var(--primary); font-size: 0.9375rem;">Public
+                                    Expenditure Ledger (Q3)</span>
+                            </div>
+                            <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted);">PDF ·
+                                VERIFIED</span>
+                        </a>
+                        <a href="#" class="official-table-row">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10 9 9 9 8 9"></polyline>
+                                </svg>
+                                <span style="font-weight: 700; color: var(--primary); font-size: 0.9375rem;">Regional
+                                    Clearing Certificates 2024</span>
+                            </div>
+                            <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted);">ZIP ·
+                                SECURE</span>
+                        </a>
+                        <a href="#" class="official-table-row">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10 9 9 9 8 9"></polyline>
+                                </svg>
+                                <span style="font-weight: 700; color: var(--primary); font-size: 0.9375rem;">Founder's
+                                    Conflict of Interest Disclosure</span>
+                            </div>
+                            <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted);">PDF ·
+                                PUBLIC</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section: Distinct Pathway -->
+    <section class="sec" style="padding: 120px 0; background: var(--cream);">
+        <div class="wrap">
+            <div class="g2" style="gap: 40px;">
+                <div
+                    style="background: var(--white); padding: 5rem 4rem; border-radius: 12px; border: 1px solid var(--beige); text-align: center;">
+                    <span class="badge mb-4" style="background: rgba(13, 92, 99, 0.05); color: var(--primary);">FOR
+                        INDIVIDUALS</span>
+                    <h3 class="mb-4">Start Your Impact</h3>
+                    <p class="mb-10 mxa" style="color: var(--text-muted); max-width: 35ch; font-size: 1rem;">Directly
+                        support regional clusters or join the recurring Guardian Circle.</p>
+                    <a href="donate.html" class="btn btn-primary" style="padding: 1.25rem 4rem; width: 100%;">START
+                        DONATION</a>
+                    <p style="margin-top: 1rem; font-size: 0.8125rem; color: var(--text-muted);">Instant tax
+                        certificates provided.</p>
+                </div>
+                <div
+                    style="background: var(--dark); padding: 5rem 4rem; border-radius: 12px; color: white; text-align: center;">
+                    <span class="badge mb-4" style="background: rgba(255,255,255,0.1); color: white; border: none;">FOR
+                        INSTITUTIONS</span>
+                    <h3 class="mb-4" style="color: white;">Strategic Partnership</h3>
+                    <p class="mb-10 mxa" style="color: rgba(255,255,255,0.6); max-width: 35ch; font-size: 1rem;">
+                        Coordinate ESG capital through our verified infrastructure pipelines.</p>
+                    <a href="contact.html" class="btn btn-outline"
+                        style="padding: 1.25rem 4rem; width: 100%; border-color: rgba(255,255,255,0.3); color: white;">INQUIRE
+                        REGARDING CSR</a>
+                    <p style="margin-top: 1rem; font-size: 0.8125rem; color: rgba(255,255,255,0.4);">Custom impact
+                        reporting available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Appendix (Bottom) -->
+    <section class="sec" style="padding: 80px 0; background: var(--white); border-top: 1px solid var(--beige);">
+        <div class="wrap">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="tac mb-12">
+                    <h2 style="font-size: 1.5rem; color: var(--primary);">Compliance FAQ</h2>
+                </div>
+                <div style="display: grid; gap: 0.75rem;">
+                    <details
+                        style="padding: 1rem 1.5rem; background: var(--cream); border-radius: 6px; border: 1px solid var(--beige); cursor: pointer;">
+                        <summary
+                            style="font-weight: 700; color: var(--primary); list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 0.9375rem;">
+                            How do I access my annual tax statement?
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </summary>
+                        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">
+                            Consolidated certificates are released every January via your secure dashboard. Individual
+                            receipts are emailed instantly.</p>
+                    </details>
+                    <details
+                        style="padding: 1rem 1.5rem; background: var(--cream); border-radius: 6px; border: 1px solid var(--beige); cursor: pointer;">
+                        <summary
+                            style="font-weight: 700; color: var(--primary); list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 0.9375rem;">
+                            What is the regional clearing time for funds?
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </summary>
+                        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">
+                            Capital is generally cleared to regional project accounts within 72 hours of transaction
+                            confirmation, subject to local banking regulations.</p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer class="footer-sec">
+        <div class="wrap">
+            <div class="footer-top">
+                <!-- Column 1: Brand + Trust -->
+                <div class="footer-brand-col">
+                    <h5 class="footer-logo">Jeevan Foundation</h5>
+                    <p class="footer-desc">Sustainable development through education, healthcare, and livelihoods.</p>
+                    <div class="footer-contact-info">
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                            <a href="mailto:contact@jeevan.org">contact@jeevan.org</a>
+                        </p>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <a href="tel:+912212345678">+91 22 1234 5678</a>
+                        </p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Explore -->
+                <div class="footer-links-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="causes.html">Causes</a></li>
+                        <li><a href="home2.html">Home2</a></li>
+                        <li><a href="blog.html">Stories</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Get Involved -->
+                <div class="footer-links-col">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="contact.html">Volunteer</a></li>
+                        <li><a href="contact.html">Partner With Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Stay Connected -->
+                <div class="footer-newsletter">
+                    <h4>Stay Connected</h4>
+                    <p>Get impact updates and field stories.</p>
+                    <form class="footer-form">
+                        <label for="footer-email" style="display: none;">Email Address</label>
+                        <input type="email" id="footer-email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-footer">Subscribe</button>
+                    </form>
+                    <p class="footer-micro">We respect your inbox. Unsubscribe anytime.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Jeevan Foundation · Registered Nonprofit</p>
+                <div class="footer-bottom-links">
+                    <a href="policy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="src/js/auth.js"></script>
+    <script src="src/js/main.js"></script>
+</body>
+
+</html>
+
+
+

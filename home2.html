@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact & Accountability Report | Jeevan Foundation</title>
+    <link rel="icon" type="image/png" href="./assets/img/favicon.ico.png">
+    <meta name="description"
+        content="Read the Jeevan Foundation global impact report. Transparent, community-led programs creating sustainable change across 42 nations.">
+
+    <!-- Optimized Font Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Rubik:wght@400;500;600&family=Outfit:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="src/css/style.css">
+
+    <style>
+        /* Refined Token System - 8pt Grid & Institutional Tone */
+        :root {
+            --section-padding: clamp(3.5rem, 8vw, 6rem);
+            --card-radius: 1rem;
+            --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 1. Hero Refinement */
+        .hero-impact {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            /* Sophisticated dual-tone overlay combined with a high-impact project image */
+            background:
+                radial-gradient(circle at center, rgba(13, 92, 99, 0.4) 0%, transparent 100%),
+                linear-gradient(135deg, rgba(13, 92, 99, 0.82) 0%, rgba(15, 20, 25, 0.7) 100%),
+                url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1600&h=900&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            padding-top: 60px;
+            position: relative;
+        }
+
+        .hero-impact-content {
+            max-width: 800px;
+            /* Readability limit */
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-impact h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 1.1;
+            /* Improved clarity */
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .hero-impact .btn-primary {
+            background: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .hero-impact .btn-white {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: var(--white);
+        }
+
+        /* 2. Impact Stats - Disciplined Hierarchy */
+        .impact-stats-container {
+            margin-top: -80px;
+            /* Reduced overlap for stability */
+            position: relative;
+            z-index: 20;
+        }
+
+        .impact-stat-strip {
+            background: var(--white);
+            border-radius: var(--card-radius);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            padding: 2rem 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-value {
+            font-family: var(--numbers);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 0.5rem;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        /* 3. Methodology Cards */
+        .feature-card-refined {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--card-radius);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            height: 100%;
+            transition: var(--transition-smooth);
+        }
+
+        .feature-card-refined:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon-box {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        /* 4. Sustainable Cycle Connector */
+        .cycle-step-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-pill {
+            background: var(--primary);
+            color: var(--white);
+            font-family: var(--numbers);
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+
+        #cycle .overlap-frame {
+            max-width: 550px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        #cycle .overlap-img {
+            max-height: 520px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 1.5rem;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.12);
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        #cycle .overlap-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* 5. Serve Grid & Data UI */
+        .map-section {
+            background: #0f1419;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-texture {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/world-map.png');
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .global-grid article {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--card-radius);
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+        }
+
+        .global-grid article:hover {
+            transform: scale(1.02);
+            border-color: var(--accent);
+        }
+
+        /* 5. Serve Grid */
+        .global-grid {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--card-radius);
+            padding: 2.5rem;
+        }
+
+        /* 6. Campaigns - Standardized Progress */
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+        }
+
+        /* 8. Testimonials Overhaul - Institutional Trust */
+        .testimonials-refined {
+            background-color: #fdfaf5;
+            padding: 60px 0;
+            /* Content-driven spacing */
+            height: auto;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .section-header-compact {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 32px;
+        }
+
+        /* Responsive Overrides for Impact Home */
+        @media (max-width: 767px) {
+            .hero-impact {
+                min-height: auto;
+                padding-top: 120px;
+                padding-bottom: 60px;
+                background-attachment: scroll;
+                /* Fix performance issues on mobile */
+            }
+
+            .hero-impact h1 {
+                font-size: 2.25rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .impact-stats-container {
+                margin-top: -40px;
+            }
+
+            .impact-stat-strip {
+                padding: 2rem 1rem;
+            }
+
+            .stat-value {
+                font-size: 2.25rem;
+            }
+
+            .global-grid article {
+                padding: 2rem 1.25rem;
+            }
+
+            .global-grid {
+                padding: 1.5rem;
+            }
+
+            .cycle-step-header {
+                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cycle-step-header+p {
+                padding-left: 0 !important;
+                text-align: center;
+            }
+
+            .map-section h2 {
+                font-size: 2.25rem !important;
+            }
+
+            .testimonials-refined {
+                padding: 40px 0;
+            }
+
+            #cycle .overlap-img {
+                max-height: 380px;
+            }
+        }
+
+        .section-header-compact h2 {
+            font-size: clamp(2.25rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .section-subtitle-refined {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .testimonial-grid-refined {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .testimonial-card-premium {
+            background: var(--white);
+            padding: 2.25rem;
+            border-radius: var(--card-radius);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .testimonial-card-premium:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+            border-color: var(--primary);
+        }
+
+        .testimonial-cta-block {
+            text-align: center;
+            margin-top: 16px;
+            /* Balance against grid gap */
+        }
+
+        /* Accessibility & Form Refinement */
+        .contact-input {
+            height: 56px;
+            padding: 0 1.5rem;
+            border-radius: 8px;
+            border: 1.5px solid rgba(0, 0, 0, 0.1);
+            width: 100%;
+            font-family: inherit;
+        }
+
+        .contact-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Layout Utilities */
+        main {
+            display: block;
+        }
+
+        .sec-refined {
+            padding: var(--section-padding) 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-impact {
+                min-height: 70vh;
+            }
+
+            .impact-stats-container {
+                margin-top: -40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header/Nav -->
+    <header>
+        <nav class="nav" aria-label="Main Navigation">
+            <div class="wrap nav-inner">
+                <a href="index.html" class="nav-logo" aria-label="Jeevan Foundation Home">Jeevan Foundation</a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="home2.html">Home2</a>
+                    <a href="about.html">About</a>
+                    <a href="causes.html">Causes</a>
+                    <a href="events.html">Events</a>
+                    <a href="blog.html">Stories</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="donate.html">Donate</a>
+
+                </div>
+                <div class="nav-actions">
+                    <div class="profile-wrapper">
+                        <button class="profile-btn" id="profileBtn" onclick="toggleProfileDropdown(event)"
+                            aria-label="Profile menu">
+                            <span id="avatarInitials">D</span>
+                        </button>
+                        <div class="profile-dropdown" id="profileDropdown" role="menu">
+                            <div id="guestMenu">
+                                <div class="dropdown-menu">
+                                    <a href="login.html" class="dropdown-item" role="menuitem">Login</a>
+                                    <a href="signup.html" class="dropdown-item primary" role="menuitem">Join Us</a>
+                                </div>
+                            </div>
+                            <div id="userMenu" style="display: none;">
+                                <div class="dropdown-menu">
+                                    <a href="user-dashboard.html" class="dropdown-item" role="menuitem">Dashboard</a>
+                                    <div class="dropdown-divider"></div>
+                                    <button class="dropdown-item danger" onclick="handleLogout()" role="menuitem">Sign
+                                        Out</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" aria-hidden="true">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobMenu" class="mob-menu">
+        <header class="mob-header">
+            <a href="index.html" class="mob-logo-box">Jeevan Foundation</a>
+            <button class="mob-close" onclick="toggleMenu()" aria-label="Close Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </header>
+
+        <div class="mob-body">
+            <a href="index.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                Home
+            </a>
+            <a href="home2.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v18h18" />
+                    <path d="m19 9-5 5-4-4-3 3" />
+                </svg>
+                Home2
+            </a>
+            <a href="about.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4" />
+                    <path d="M12 8h.01" />
+                </svg>
+                About
+            </a>
+            <a href="causes.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                </svg>
+                Causes
+            </a>
+            <a href="events.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Events
+            </a>
+            <a href="blog.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                </svg>
+                Stories
+            </a>
+            <a href="contact.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                Contact
+            </a>
+            <a href="donate.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+                Donate
+            </a>
+        </div>
+
+        <div class="mob-footer">
+            <div id="mobGuestLinks">
+                <a href="donate.html" class="mob-action-btn primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                    </svg>
+                    Support Our Mission
+                </a>
+                <a href="login.html" class="mob-action-btn secondary">Join the Community</a>
+            </div>
+            <div id="mobUserLinks" style="display: none;">
+                <a href="donate.html" class="mob-action-btn primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                    </svg>
+                    Quick Donation
+                </a>
+                <a href="user-dashboard.html" class="mob-action-btn secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="7" height="9" x="3" y="3" rx="1" />
+                        <rect width="7" height="5" x="14" y="3" rx="1" />
+                        <rect width="7" height="9" x="14" y="12" rx="1" />
+                        <rect width="7" height="5" x="3" y="16" rx="1" />
+                    </svg>
+                    My Impact Dashboard
+                </a>
+                <button onclick="handleLogout()" class="mob-action-btn danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
+                    Sign Out
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section class="hero-impact" style="background-attachment: scroll; padding-top: 3em;">
+            <div class="wrap">
+                <div class="hero-impact-content" style="margin-top: 3em;">
+                    <span class="badge mb-4"
+                        style=" background: var(--accent); color: var(--dark); border: none;">Institutional
+                        Accountability Report 2026</span>
+                    <h1 class="mb-6" style="text-shadow: 0 10px 40px rgba(0,0,0,0.3);">Radical Transparency. Permanent
+                        Impact.</h1>
+                    <p class="mb-10 mxa"
+                        style="font-size: 1.25rem; color: rgba(255,255,255,0.9); line-height: 1.6; max-width: 65ch;">
+                        We don't just deliver aid; we build self-sustaining ecosystems. Join our mission to move 5
+                        million individuals out of poverty by 2030 through verified, community-owned infrastructure.
+                    </p>
+                    <div class="flex gap-4 justify-center flex-wrap">
+                        <a href="donate.html" class="btn btn-primary" style="padding: 1.25rem 3rem;">Support Our
+                            Strategy</a>
+                        <a href="#impact" class="btn btn-white"
+                            style="backdrop-filter: blur(10px); padding: 1.25rem 3rem;">View Ground Data</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dual-Layer Partner Bar -->
+            <div
+                style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(15,20,25,0.8); backdrop-filter: blur(20px); border-top: 1px solid rgba(255,255,255,0.1); padding: 1.5rem 0;">
+                <div class="wrap">
+                    <div class="flex aic jcsb gap-8 flex-wrap opacity-60" style="filter: grayscale(1) brightness(2);">
+                        <span
+                            style="color: white; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">STRATEGIC
+                            PARTNERS:</span>
+                        <div class="flex aic gap-10">
+                            <span style="color: white; font-weight: 800; font-size: 1.25rem;">UN-HABITAT</span>
+                            <span style="color: white; font-weight: 800; font-size: 1.25rem;">WORLD BANK</span>
+                            <span style="color: white; font-weight: 800; font-size: 1.25rem;">OXFORD LABS</span>
+                            <span style="color: white; font-weight: 800; font-size: 1.25rem;">SHELL ENERGY</span>
+                            <span style="color: white; font-weight: 800; font-size: 1.25rem;">UNICEF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Impact Stats -->
+        <div class="wrap impact-stats-container" id="impact">
+            <div class="impact-stat-strip">
+                <div class="g4 tac">
+                    <article>
+                        <div class="stat-value">2.5M</div>
+                        <div class="stat-label">Lives Impacted</div>
+                    </article>
+                    <article>
+                        <div class="stat-value">94%</div>
+                        <div class="stat-label">Funding Efficiency</div>
+                    </article>
+                    <article>
+                        <div class="stat-value">42</div>
+                        <div class="stat-label">Countries Served</div>
+                    </article>
+                    <article>
+                        <div class="stat-value">15K</div>
+                        <div class="stat-label">Active Volunteers</div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. MethodologySection -->
+        <section class="sec-refined" style="background: var(--cream);">
+            <div class="wrap">
+                <header class="tac mb-12">
+                    <span class="badge mb-4">Our Methodology</span>
+                    <h2 class="mb-4">Standard of Excellence</h2>
+                    <p class="mxa mw-prose" style="color: var(--text-muted);">We reject temporary dependency for the
+                        dignity of permanent, community-owned independence.</p>
+                </header>
+                <div class="g3">
+                    <article class="feature-card-refined" style="border-top: 4px solid var(--primary);">
+                        <div class="feature-icon-box"
+                            style="background: var(--beige); width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 2rem;">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" aria-hidden="true">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="mb-3">Radical Transparency</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6;">Every dollar is
+                            tracked from contribution to ground delivery through our immutable impact ledger, ensuring
+                            100% accountability.</p>
+                    </article>
+                    <article class="feature-card-refined" style="border-top: 4px solid var(--accent);">
+                        <div class="feature-icon-box"
+                            style="background: var(--beige); width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 2rem;">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" aria-hidden="true">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3 class="mb-3">Community Ownership</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6;">Indigenous councils
+                            manage all regional projects. We don't arrive with answers; we arrive with questions and
+                            capital.</p>
+                    </article>
+                    <article class="feature-card-refined" style="border-top: 4px solid var(--primary);">
+                        <div class="feature-icon-box"
+                            style="background: var(--beige); width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 2rem;">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" aria-hidden="true">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="mb-3">Sustainable Infrastructure</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6;">We build
+                            systems—solar water, schools, regional clinics—that are engineered for 50-year lifecycles
+                            with local maintenance.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Sustainable Cycle -->
+        <section class="sec-refined" id="cycle">
+            <div class="wrap">
+                <div class="g2 aic">
+                    <div>
+                        <header class="mb-10">
+                            <span class="badge mb-4">Strategic Execution</span>
+                            <h2 class="mb-6">The Sustainable Cycle</h2>
+                            <p style="color: var(--text-muted); font-size: 1.125rem;">Our 4-step methodology is designed
+                                to exit—leaving behind a thriving, independent community.</p>
+                        </header>
+
+                        <div class="mb-8">
+                            <article class="mb-6">
+                                <div class="cycle-step-header">
+                                    <span class="step-pill">01</span>
+                                    <h4>Deep Needs Assessment</h4>
+                                </div>
+                                <p style="color: var(--text-muted); font-size: 0.9375rem; padding-left: 3.5rem;">We
+                                    spend months on the ground listening to local leaders before a single dollar is
+                                    spent.</p>
+                            </article>
+                            <article class="mb-6">
+                                <div class="cycle-step-header">
+                                    <span class="step-pill">02</span>
+                                    <h4>Leadership Training</h4>
+                                </div>
+                                <p style="color: var(--text-muted); font-size: 0.9375rem; padding-left: 3.5rem;">
+                                    Equipping indigenous councils with project management skills to own their future.
+                                </p>
+                            </article>
+                            <article class="mb-6">
+                                <div class="cycle-step-header">
+                                    <span class="step-pill">03</span>
+                                    <h4>Strategic Execution</h4>
+                                </div>
+                                <p style="color: var(--text-muted); font-size: 0.9375rem; padding-left: 3.5rem;">
+                                    Building infrastructure using local labor and materials to stimulate regional
+                                    economies.</p>
+                            </article>
+                            <article class="mb-6">
+                                <div class="cycle-step-header">
+                                    <span class="step-pill">04</span>
+                                    <h4>Empowered Transition</h4>
+                                </div>
+                                <p style="color: var(--text-muted); font-size: 0.9375rem; padding-left: 3.5rem;">Full
+                                    project handover. We exit operations, remaining as an advisory partner.</p>
+                            </article>
+                        </div>
+                        <a href="about.html" class="btn btn-outline">Read Technical Strategy</a>
+                    </div>
+                    <div class="overlap-frame">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&h=800&fit=crop"
+                            alt="Field team working with local community" class="overlap-img" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Presence (Modern Data Dashboard) -->
+        <section class="sec-refined map-section">
+            <div class="map-texture"></div> <!-- Subtle world map texture from previous rules -->
+            <div class="wrap" style="position: relative; z-index: 5;">
+                <header class="tac mb-16">
+                    <span class="badge mb-4" style="background: rgba(255,255,255,0.1); color: white;">Global
+                        Footprint</span>
+                    <h2 class="mb-4" style="color: white; font-size: 3.5rem;">Operational Reach</h2>
+                    <p class="mxa mw-prose"
+                        style="color: rgba(255,255,255,0.6); padding-top: 1em; padding-bottom: 2em;">42 nations. 5
+                        continents. One mission. Our operational data is independently verified by third-party auditors
+                        (PwC & Regional Watchdogs).</p>
+                </header>
+
+                <div class="global-grid g3 tac">
+                    <article>
+                        <div
+                            style="font-family: var(--numbers); font-size: 4.5rem; line-height: 1; margin-bottom: 1rem; color: var(--accent);">
+                            18</div>
+                        <h4
+                            style="color: white; font-size: 1.25rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem;">
+                            African Nations</h4>
+                        <p style="color: rgba(255,255,255,0.5); font-size: 0.875rem; line-height: 1.6;">Active hubs in
+                            Kenya, Uganda, Rwanda, and 15 others, focusing on solar-powered boreholes and agricultural
+                            fintech for smallholder farmers.</p>
+                        <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.5rem;">
+                            <span style="font-size: 0.7rem; color: var(--accent); font-weight: 700;">450+
+                                PROJECTS</span>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div
+                            style="font-family: var(--numbers); font-size: 4.5rem; line-height: 1; margin-bottom: 1rem; color: var(--accent);">
+                            12</div>
+                        <h4
+                            style="color: white; font-size: 1.25rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem;">
+                            Asian Nations</h4>
+                        <p style="color: rgba(255,255,255,0.5); font-size: 0.875rem; line-height: 1.6;">Operations in
+                            Bangladesh, India, and Southeast Asia centers, prioritizing mobile healthcare and
+                            distributive vocational training labs.</p>
+                        <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.5rem;">
+                            <span style="font-size: 0.7rem; color: var(--accent); font-weight: 700;">220+
+                                PROJECTS</span>
+                        </div>
+                    </article>
+
+                    <article
+                        style="background: var(--primary); transform: scale(1.05); border-color: rgba(255,255,255,0.2);">
+                        <div
+                            style="font-family: var(--numbers); font-size: 4.5rem; line-height: 1; margin-bottom: 1rem; color: var(--white);">
+                            42</div>
+                        <h4
+                            style="color: white; font-size: 1.25rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem;">
+                            Global Hubs</h4>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; line-height: 1.6;">Centralized
+                            strategic ground-level operations manage decentralised indigenous councils for 100%
+                            sustainable Handover Protocol.</p>
+                        <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.5rem;">
+                            <span style="font-size: 0.75rem; color: white; font-weight: 700;">850K ACTIVE USERS</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Campaigns -->
+        <section class="sec-refined">
+            <div class="wrap">
+                <div class="flex flex-wrap aic justify-between mb-12 gap-4">
+                    <header>
+                        <span class="badge mb-2">Resource Needs</span>
+                        <h2 class="mb-2">Priority Campaigns</h2>
+                    </header>
+                    <a href="causes.html" class="btn btn-outline btn-sm">All Active Projects</a>
+                </div>
+
+                <div class="g3">
+                    <article class="card">
+                        <img src="https://images.unsplash.com/photo-1594708767771-a7502209ff51?w=600&h=400&fit=crop"
+                            alt="Relief supplies distribution" class="card-img" loading="lazy">
+                        <div class="card-body">
+                            <span class="badge mb-3">Crisis Relief</span>
+                            <h3 class="mb-3">Delta Region Flood Support</h3>
+                            <p class="mb-6" style="color: var(--text-muted); font-size: 0.9375rem;">Emergency shelter
+                                and filtration systems for 500 displaced families.</p>
+                            <div class="progress-wrapper">
+                                <div class="progress" role="progressbar" aria-valuenow="72" aria-valuemin="0"
+                                    aria-valuemax="100">
+                                    <div class="progress-bar" style="width: 72%;"></div>
+                                </div>
+                                <div class="progress-meta">
+                                    <span style="color: var(--primary);">$36,000 Raised</span>
+                                    <span style="color: var(--text-muted);">$50,000 Goal</span>
+                                </div>
+                            </div>
+                            <a href="donate.html" class="btn btn-primary w-full btn-sm">Support This Cause</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&h=400&fit=crop"
+                            alt="Solar well installation" class="card-img" loading="lazy">
+                        <div class="card-body">
+                            <span class="badge mb-3">Infrastructure</span>
+                            <h3 class="mb-3">Clean Water Solar Wells</h3>
+                            <p class="mb-6" style="color: var(--text-muted); font-size: 0.9375rem;">Implementing 15
+                                solar-powered pumping stations in drought-prone villages.</p>
+                            <div class="progress-wrapper">
+                                <div class="progress" role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                                    aria-valuemax="100">
+                                    <div class="progress-bar" style="width: 45%;"></div>
+                                </div>
+                                <div class="progress-meta">
+                                    <span style="color: var(--primary);">$11,250 Raised</span>
+                                    <span style="color: var(--text-muted);">$25,000 Goal</span>
+                                </div>
+                            </div>
+                            <a href="donate.html" class="btn btn-primary w-full btn-sm">Support This Cause</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop"
+                            alt="Adult education class" class="card-img" loading="lazy">
+                        <div class="card-body">
+                            <span class="badge mb-3">Education</span>
+                            <h3 class="mb-3">Vocational Empowerment Lab</h3>
+                            <p class="mb-6" style="color: var(--text-muted); font-size: 0.9375rem;">Job skills training
+                                and financial literacy programs for community leaders.</p>
+                            <div class="progress-wrapper">
+                                <div class="progress" role="progressbar" aria-valuenow="15" aria-valuemin="0"
+                                    aria-valuemax="100">
+                                    <div class="progress-bar" style="width: 15%;"></div>
+                                </div>
+                                <div class="progress-meta">
+                                    <span style="color: var(--primary);">$4,500 Raised</span>
+                                    <span style="color: var(--text-muted);">$30,000 Goal</span>
+                                </div>
+                            </div>
+                            <a href="donate.html" class="btn btn-primary w-full btn-sm">Support This Cause</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Testimonials Section - Fixed Hierarchy & Balance -->
+        <section class="testimonials-refined" id="proof">
+            <div class="wrap">
+                <div class="section-header-compact">
+                    <h2>Voices From the Ground</h2>
+                    <p class="section-subtitle-refined">
+                        Real evidence of transformation from those who live it every day.
+                    </p>
+                </div>
+
+                <div class="testimonial-grid-refined">
+                    <!-- card 1 -->
+                    <article class="testimonial-card-premium">
+                        <div>
+                            <p class="testimonial-quote"
+                                style="font-style: italic; font-size: 1.125rem; line-height: 1.6; color: var(--text); margin-bottom: 2rem;">
+                                "The level of transparency provided is unprecedented in this sector. As a regular donor,
+                                I receive detailed ground reports that show exactly how the community initiatives are
+                                progressing, giving me total confidence."
+                            </p>
+                        </div>
+                        <div class="flex aic gap-4"
+                            style="border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1.5rem;">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop"
+                                alt="David Ross"
+                                style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
+                            <div>
+                                <h4 style="font-size: 1rem; color: var(--text); margin-bottom: 0;">David Ross</h4>
+                                <span style="font-size: 0.8125rem; color: var(--primary); font-weight: 600;">Quarterly
+                                    Partner Donor</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- card 2 -->
+                    <article class="testimonial-card-premium">
+                        <div>
+                            <p class="testimonial-quote"
+                                style="font-style: italic; font-size: 1.125rem; line-height: 1.6; color: var(--text); margin-bottom: 2rem;">
+                                "They didn't just give us charity; they gave us the specific technical training to build
+                                our own regional economy. Our textile cooperative now sustains 40 families independently
+                                and continues to grow."
+                            </p>
+                        </div>
+                        <div class="flex aic gap-4"
+                            style="border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1.5rem;">
+                            <img src="https://images.unsplash.com/photo-1531123897727-8f129e16fd3c?w=120&h=120&fit=crop"
+                                alt="Anjali Devi"
+                                style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
+                            <div>
+                                <h4 style="font-size: 1rem; color: var(--text); margin-bottom: 0;">Anjali Devi</h4>
+                                <span style="font-size: 0.8125rem; color: var(--primary); font-weight: 600;">District
+                                    Council Chairperson</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="testimonial-cta-block">
+                    <a href="blog.html" class="btn btn-outline" style="padding: 1rem 2.5rem;">Read More Impact
+                        Stories</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Newsletter CTA -->
+        <section class="sec-refined" style="background: var(--primary); color: white;">
+            <div class="wrap">
+                <div class="g2 aic">
+                    <div>
+                        <h2 style="color: white; margin-bottom: 2rem;">Impact Reports, Directly to You.</h2>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 1.125rem;">Receive quarterly accountability
+                            reports and ground-zero progress stories. No spam, just action.</p>
+                    </div>
+                    <div>
+                        <form class="flex flex-col gap-4">
+                            <label for="newsletter-email" class="sr-only">Email Address</label>
+                            <input type="email" id="newsletter-email" placeholder="Your primary email address"
+                                class="contact-input" required>
+                            <button type="submit" class="btn btn-white w-full">Subscribe to Progress Updates</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 10. Footer -->
+    <!-- Footer -->
+    <footer class="footer-sec">
+        <div class="wrap">
+            <div class="footer-top">
+                <!-- Column 1: Brand + Trust -->
+                <div class="footer-brand-col">
+                    <h5 class="footer-logo">Jeevan Foundation</h5>
+                    <p class="footer-desc">Sustainable development through education, healthcare, and livelihoods.</p>
+                    <div class="footer-contact-info">
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                            <a href="mailto:contact@jeevan.org">contact@jeevan.org</a>
+                        </p>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <a href="tel:+912212345678">+91 22 1234 5678</a>
+                        </p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Explore -->
+                <div class="footer-links-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="causes.html">Causes</a></li>
+                        <li><a href="home2.html">Home2</a></li>
+                        <li><a href="blog.html">Stories</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Get Involved -->
+                <div class="footer-links-col">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="contact.html">Volunteer</a></li>
+                        <li><a href="contact.html">Partner With Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Stay Connected -->
+                <div class="footer-newsletter">
+                    <h4>Stay Connected</h4>
+                    <p>Get impact updates and field stories.</p>
+                    <form class="footer-form">
+                        <label for="footer-email" style="display: none;">Email Address</label>
+                        <input type="email" id="footer-email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-footer">Subscribe</button>
+                    </form>
+                    <p class="footer-micro">We respect your inbox. Unsubscribe anytime.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Jeevan Foundation · Registered Nonprofit</p>
+                <div class="footer-bottom-links">
+                    <a href="policy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="src/js/auth.js"></script>
+    <script src="src/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - Jeevan Foundation</title>
+    <link rel="icon" type="icon/png" href="./assets/img/favicon.ico.png">
+    <meta name="description" content="Manage your donations, volunteer activities, and impact with Jeevan Foundation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Rubik:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="src/css/style.css">
+    <style>
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--dark);
+            color: var(--white);
+            padding: 1.5rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            font-family: var(--heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            padding: 0 1.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9375rem;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            border-left-color: var(--accent);
+        }
+
+        .sidebar-nav svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .user-name {
+            font-weight: 500;
+            font-size: 0.9375rem;
+        }
+
+        .user-email {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            background: var(--cream);
+            min-height: 100vh;
+        }
+
+        .topbar {
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            min-width: 0;
+            /* Important for text truncation */
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .topbar-title {
+            font-family: var(--heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .topbar-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .content-area {
+            padding: 1.25rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-card-icon.primary {
+            background: rgba(13, 92, 99, 0.1);
+            color: var(--primary);
+        }
+
+        .stat-card-icon.accent {
+            background: rgba(249, 168, 38, 0.1);
+            color: var(--accent);
+        }
+
+        .stat-card-icon.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .stat-card-icon.info {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .stat-card-value {
+            font-family: var(--numbers);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-card-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-family: var(--heading);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .activity-icon.donation {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .activity-icon.volunteer {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .activity-icon.event {
+            background: rgba(249, 168, 38, 0.1);
+            color: var(--accent);
+        }
+
+        .activity-content h4 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-content p {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .cause-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .cause-item:last-child {
+            border-bottom: none;
+        }
+
+        .cause-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 0.5rem;
+            object-fit: cover;
+        }
+
+        .cause-info h4 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .cause-progress {
+            height: 4px;
+            background: rgba(13, 92, 99, 0.1);
+            border-radius: 100px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .cause-progress-bar {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 100px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-family: var(--body);
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                z-index: 1000;
+                width: 260px;
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                backdrop-filter: blur(2px);
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .topbar {
+                padding: 0.75rem 1rem;
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(15px);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            }
+
+            .topbar-title {
+                font-size: 1.1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+                border-radius: 1.25rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            }
+
+            .stat-card-value {
+                font-size: 1.75rem;
+            }
+
+            .card {
+                border-radius: 1.25rem;
+            }
+
+            .content-area {
+                padding: 1rem;
+            }
+
+            .dashboard-grid {
+                gap: 1rem;
+            }
+        }
+
+        /* ===================================================
+           USER DASHBOARD – Extra 360px Tweaks
+           Extends existing 768px mobile styles further
+        =================================================== */
+        @media (max-width: 400px) {
+            .topbar {
+                padding: 0.625rem 0.875rem !important;
+            }
+
+            .topbar-title {
+                font-size: 0.9rem !important;
+                max-width: 150px;
+            }
+
+            .content-area {
+                padding: 0.75rem !important;
+            }
+
+            .stat-card {
+                padding: 1rem !important;
+            }
+
+            .stat-card-value {
+                font-size: 1.5rem !important;
+            }
+
+            .cause-item {
+                flex-wrap: wrap;
+            }
+
+            .cause-img {
+                width: 48px !important;
+                height: 48px !important;
+            }
+
+            /* Ensure cards never overflow */
+            .card,
+            .stat-card,
+            .main-content,
+            .content-area {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+        }
+
+        /* Ensure main-content never causes horizontal scroll */
+        .main-content {
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="index.html" class="sidebar-logo">Jeevan Foundation</a>
+            <nav>
+                <ul class="sidebar-nav">
+                    <li>
+                        <a href="user-dashboard.html" class="active">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="events.html">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            Events
+                        </a>
+                    </li>
+
+
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">JD</div>
+                    <div>
+                        <div class="user-name">John Doe</div>
+                        <div class="user-email">john@example.com</div>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()">Sign Out</button>
+            </div>
+        </aside>
+
+        <!-- Sidebar Overlay (Mobile) -->
+        <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle Menu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <h1 class="topbar-title">Welcome back, John!</h1>
+                </div>
+                <div class="topbar-actions">
+                    <a href="index.html" class="btn btn-primary"
+                        style="padding: 0.5rem 1rem; font-size: 0.875rem;">Home</a>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-card-value" id="statTotalDonated">?0</div>
+                                <div class="stat-card-label">Total Donated</div>
+                            </div>
+                            <div class="stat-card-icon primary">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-card-value" id="statVolunteerHours">0</div>
+                                <div class="stat-card-label">Volunteer Hours</div>
+                            </div>
+                            <div class="stat-card-icon accent">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-card-value" id="statCausesSupported">0</div>
+                                <div class="stat-card-label">Causes Supported</div>
+                            </div>
+                            <div class="stat-card-icon success">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-card-value" id="statEventsAttended">0</div>
+                                <div class="stat-card-label">Events Registered</div>
+                            </div>
+                            <div class="stat-card-icon info">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <!-- Recent Activity -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Activity</h2>
+                            <a href="#" class="form-link" style="font-size: 0.875rem;">View All</a>
+                        </div>
+                        <div class="card-body" id="activityContainer">
+                            <!-- Activities will be loaded dynamically -->
+                            <div class="activity-item" style="justify-content: center; color: var(--text-muted);">
+                                <p>No activities yet. Start by making a donation!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Causes You Support -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Your Causes</h2>
+                            <a href="causes.html" class="form-link" style="font-size: 0.875rem;">Explore</a>
+                        </div>
+                        <div class="card-body" id="causesContainer">
+                            <!-- Causes will be loaded dynamically -->
+                            <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                                <p>You haven't supported any causes yet.</p>
+                                <a href="causes.html" class="btn btn-primary" style="margin-top: 1rem;">Explore
+                                    Causes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="mobMenu" class="mob-menu" style="display: none;"></div> <!-- Hidden decoy for consistency -->
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+
+            // Prevent body scroll when sidebar is open
+            if (sidebar.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+    </script>
+
+    <!-- Auth Script -->
+    <script src="src/js/auth.js"></script>
+    <script src="src/js/main.js"></script>
+    <!-- Data Script -->
+    <script src="src/js/data.js"></script>
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!Auth.isAuthenticated()) {
+                // Redirect to login if not authenticated
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Update user info in sidebar
+            const user = Auth.getUser();
+            if (user) {
+                // Update avatar initials
+                const avatarEl = document.querySelector('.user-avatar');
+                if (avatarEl) {
+                    avatarEl.textContent = Auth.getInitials();
+                }
+
+                // Update user name
+                const nameEl = document.querySelector('.user-name');
+                if (nameEl) {
+                    nameEl.textContent = user.firstName + (user.lastName ? ' ' + user.lastName : '');
+                }
+
+                // Update email
+                const emailEl = document.querySelector('.user-email');
+                if (emailEl) {
+                    emailEl.textContent = user.email;
+                }
+
+                // Update welcome message
+                const welcomeEl = document.querySelector('.topbar-title');
+                if (welcomeEl) {
+                    welcomeEl.textContent = 'Welcome back, ' + user.firstName + '!';
+                }
+            }
+
+            // Load dashboard data
+            loadDashboardData();
+        });
+
+        // Load dynamic dashboard data
+        function loadDashboardData() {
+            // Get stats from UserData
+            const stats = UserData.getDashboardStats();
+
+            // Update stat cards
+            document.getElementById('statTotalDonated').textContent = UserData.formatCurrency(stats.totalDonated);
+            document.getElementById('statVolunteerHours').textContent = stats.volunteerHours;
+            document.getElementById('statCausesSupported').textContent = stats.causesSupported;
+            document.getElementById('statEventsAttended').textContent = stats.eventsRegistered;
+
+            // Load recent activities
+            loadActivities();
+
+            // Load causes
+            loadCauses();
+        }
+
+        // Load activities dynamically
+        function loadActivities() {
+            const activities = UserData.getActivities(5);
+            const container = document.getElementById('activityContainer');
+
+            if (activities.length === 0) {
+                container.innerHTML = `
+                    <div class="activity-item" style="justify-content: center; color: var(--text-muted);">
+                        <p>No activities yet. Start by making a donation!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = activities.map(activity => {
+                const iconClass = activity.type || 'donation';
+                const iconSvg = getActivityIcon(activity.type);
+                return `
+                    <div class="activity-item">
+                        <div class="activity-icon ${iconClass}">
+                            ${iconSvg}
+                        </div>
+                        <div class="activity-content">
+                            <h4>${activity.title}</h4>
+                            <p>${UserData.formatDate(activity.date)}${activity.description ? ' � ' + activity.description : ''}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Get activity icon based on type
+        function getActivityIcon(type) {
+            const icons = {
+                donation: `<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                </svg>`,
+                volunteer: `<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>`,
+                event: `<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>`
+            };
+            return icons[type] || icons.donation;
+        }
+
+        // Load causes dynamically
+        function loadCauses() {
+            const causes = UserData.getCauses();
+            const container = document.getElementById('causesContainer');
+
+            if (!container) return;
+
+            if (causes.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                        <p>You haven't supported any causes yet.</p>
+                        <a href="causes.html" class="btn btn-primary" style="margin-top: 1rem;">Explore Causes</a>
+                    </div>
+                `;
+                return;
+            }
+
+            const causeImages = {
+                'Education for All': 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=120&h=120&fit=crop',
+                'Clean Water Initiative': 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=120&h=120&fit=crop',
+                'Healthcare Access': 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=120&h=120&fit=crop',
+                'General Fund': 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=120&h=120&fit=crop'
+            };
+
+            container.innerHTML = causes.slice(0, 3).map(cause => {
+                const img = causeImages[cause.name] || causeImages['General Fund'];
+                const progress = Math.min(100, Math.round((cause.totalDonated / 50000) * 100));
+                return `
+                    <div class="cause-item">
+                        <img src="${img}" alt="${cause.name}" class="cause-img">
+                        <div class="cause-info" style="flex: 1;">
+                            <h4>${cause.name}</h4>
+                            <div style="font-size: 0.8125rem; color: var(--text-muted);">
+                                ${UserData.formatCurrency(cause.totalDonated)} donated � ${cause.donationCount} donation${cause.donationCount > 1 ? 's' : ''}
+                            </div>
+                            <div class="cause-progress">
+                                <div class="cause-progress-bar" style="width: ${progress}%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Function to add sample data for testing
+        function addTestData() {
+            UserData.addDonation({ amount: 5000, cause: 'Education for All' });
+            UserData.addDonation({ amount: 2500, cause: 'Clean Water Initiative' });
+            UserData.addVolunteerHours({ hours: 4, event: 'Teaching at Community Center' });
+            UserData.registerEvent({ name: 'Annual Charity Run', date: '2026-02-15', location: 'Chennai Marina Beach' });
+            loadDashboardData();
+        }
+    </script>
+</body>
+
+</html>

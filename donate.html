@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Jeevan Foundation</title>
+    <link rel="icon" type="icon/png" href="./assets/img/favicon.ico.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Rubik:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="src/css/style.css">
+    <style>
+        @media (max-width: 767px) {
+            .hero {
+                padding-top: 100px !important;
+            }
+            .card-body {
+                padding: 1.5rem !important;
+            }
+            h2 {
+                font-size: 1.85rem !important;
+            }
+            /* Amount Selector Stacking */
+            div[style*="grid-template-columns: repeat(4, 1fr)"] {
+                grid-template-columns: 1fr 1fr !important;
+            }
+            /* Details Grid Stacking */
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+            .btn-accent {
+                padding: 1rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Nav -->
+    <nav class="nav">
+        <div class="wrap nav-inner">
+            <a href="index.html" class="nav-logo">Jeevan Foundation</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="home2.html">Home2</a>
+                <a href="about.html">About</a>
+                <a href="causes.html">Causes</a>
+                <a href="events.html">Events</a>
+                <a href="blog.html">Stories</a>
+                <a href="contact.html">Contact</a>
+                <a href="donate.html">Donate</a>
+
+                </div>
+            <div class="nav-actions">
+                <div class="profile-wrapper">
+                    <button class="profile-btn" id="profileBtn" onclick="toggleProfileDropdown(event)">
+                        <span id="avatarInitials">D</span>
+                    </button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div id="guestMenu">
+                            <div class="dropdown-menu">
+                                <a href="login.html" class="dropdown-item">Login</a>
+                                <a href="signup.html" class="dropdown-item primary">Join Us</a>
+                            </div>
+                        </div>
+                        <div id="userMenu" style="display: none;">
+                            <div class="dropdown-menu">
+                                <a href="user-dashboard.html" class="dropdown-item">Dashboard</a>
+                                <div class="dropdown-divider"></div>
+                                <button class="dropdown-item danger" onclick="handleLogout()">Sign Out</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="nav-toggle" onclick="toggleMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobMenu" class="mob-menu">
+        <header class="mob-header">
+            <a href="index.html" class="mob-logo-box">Jeevan Foundation</a>
+            <button class="mob-close" onclick="toggleMenu()" aria-label="Close Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </header>
+
+        <div class="mob-body">
+            <a href="index.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Home
+            </a>
+            <a href="home2.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                Home2
+            </a>
+            <a href="about.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                About
+            </a>
+            <a href="causes.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                Causes
+            </a>
+            <a href="events.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Events
+            </a>
+            <a href="blog.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                Stories
+            </a>
+            <a href="contact.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Contact
+            </a>
+            <a href="donate.html" class="mob-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                Donate
+            </a>
+        </div>
+
+        <div class="mob-footer">
+            <div id="mobGuestLinks">
+                <a href="donate.html" class="mob-action-btn primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    Support Our Mission
+                </a>
+                <a href="login.html" class="mob-action-btn secondary">Join the Community</a>
+            </div>
+            <div id="mobUserLinks" style="display: none;">
+                <a href="donate.html" class="mob-action-btn primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    Quick Donation
+                </a>
+                <a href="user-dashboard.html" class="mob-action-btn secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                    My Impact Dashboard
+                </a>
+                <button onclick="handleLogout()" class="mob-action-btn danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Sign Out
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section class="sec" style="padding-top: 10em; background: var(--beige); position: relative; overflow: hidden;">
+        <div class="hero-blob hero-blob-1" style="background: var(--primary); opacity: 0.05;"></div>
+        <div class="wrap" style="position: relative; z-index: 2;">
+            <div class="g2" style="align-items: start; gap: 3rem;">
+                <div class="card" style="box-shadow: 0 40px 100px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.05);">
+                    <div class="card-body" style="padding: 2.25rem;">
+                        <span class="badge mb-4" style="background: rgba(13,92,99,0.1); color: var(--primary);">DIRECT DEPLOYMENT</span>
+                        <h2 class="mb-2" style="font-size: 2.5rem;">Fuel the Mission.</h2>
+                        <p class="mb-6" style="color: var(--text-muted); font-size: 1.125rem;">100% of your gift reaches the ground. We cover overhead through separate private grants.</p>
+
+                        <div class="mb-6">
+                            <label style="display: block; font-weight: 700; margin-bottom: 1rem; color: var(--primary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em;">Frequency</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: var(--cream); padding: 0.5rem; border-radius: 100px;">
+                                <button id="oneTime" onclick="selectType('oneTime')"
+                                    style="padding: 0.875rem; border-radius: 100px; font-weight: 700; border: none; background: var(--primary); color: white; cursor: pointer; transition: 0.3s;">One-Time</button>
+                                <button id="monthly" onclick="selectType('monthly')"
+                                    style="padding: 0.875rem; border-radius: 100px; font-weight: 700; border: none; background: transparent; color: var(--primary); cursor: pointer; transition: 0.3s;">Monthly</button>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label style="display: block; font-weight: 700; margin-bottom: 1rem; color: var(--primary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em;">Select Impact Level</label>
+                            <div
+                                style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1.5rem;">
+                                <button onclick="selectAmount(25, this)" class="amt-btn"
+                                    style="padding: 1.25rem 0.5rem; border-radius: 12px; font-weight: 700; font-size: 1.25rem; border: 2px solid #e5e7eb; background: white; cursor: pointer; transition: 0.3s; font-family: var(--numbers);">$25</button>
+                                <button onclick="selectAmount(50, this)" class="amt-btn"
+                                    style="padding: 1.25rem 0.5rem; border-radius: 12px; font-weight: 700; font-size: 1.25rem; border: 2px solid #e5e7eb; background: white; cursor: pointer; transition: 0.3s; font-family: var(--numbers);">$50</button>
+                                <button onclick="selectAmount(100, this)" class="amt-btn active"
+                                    style="padding: 1.25rem 0.5rem; border-radius: 12px; font-weight: 700; font-size: 1.25rem; border: 2px solid var(--primary); background: var(--primary); color: white; cursor: pointer; transition: 0.3s; font-family: var(--numbers);">$100</button>
+                                <button onclick="selectAmount(250, this)" class="amt-btn"
+                                    style="padding: 1.25rem 0.5rem; border-radius: 12px; font-weight: 700; font-size: 1.25rem; border: 2px solid #e5e7eb; background: white; cursor: pointer; transition: 0.3s; font-family: var(--numbers);">$250</button>
+                            </div>
+                            <div style="position: relative;">
+                                <span style="position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--primary);">$</span>
+                                <input type="number" id="customAmount" placeholder="Enter custom amount"
+                                    style="width: 100%; padding: 1.25rem 1.25rem 1.25rem 2.5rem; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 1.125rem; font-weight: 600; font-family: var(--numbers); outline: none; transition: 0.3s;">
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label style="display: block; font-weight: 700; margin-bottom: 1rem; color: var(--primary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em;">Directed Impact Cluster</label>
+                            <select
+                                style="width: 100%; padding: 1.25rem; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 1rem; font-weight: 600; color: var(--dark); cursor: pointer; background: white; appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230D5C63%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem;">
+                                <option>General Impact Fund (Most Urgent)</option>
+                                <option>Sustainable Education & Tech</option>
+                                <option>Solar Water & Infrastructure</option>
+                                <option>Primary Healthcare Mobility</option>
+                                <option>Emergency Crisis Response</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-6">
+                            <label style="display: block; font-weight: 700; margin-bottom: 1rem; color: var(--primary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em;">Personal Details</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                                <input type="text" placeholder="First Name"
+                                    style="width: 100%; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 12px; font-weight: 500;"><input
+                                    type="text" placeholder="Last Name"
+                                    style="width: 100%; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 12px; font-weight: 500;">
+                            </div>
+                            <input type="email" placeholder="Email for tax receipt"
+                                style="width: 100%; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 12px; margin-bottom: 1rem; font-weight: 500;">
+                        </div>
+
+                        <div class="mb-6">
+                            <label style="display: block; font-weight: 700; margin-bottom: 1rem; color: var(--primary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em;">Secure Payment</label>
+                            <input type="text" placeholder="Card Number"
+                                style="width: 100%; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 12px; margin-bottom: 1rem; font-weight: 500;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;"><input type="text"
+                                    placeholder="MM/YY"
+                                    style="width: 100%; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 12px; font-weight: 500;"><input
+                                    type="text" placeholder="CVV"
+                                    style="width: 100%; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 12px; font-weight: 500;">
+                            </div>
+                        </div>
+
+                        <div
+                            style="background: var(--primary); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; color: white;">
+                            <span style="font-weight: 600; font-size: 1.125rem;">Total Contribution</span><span id="totalAmount"
+                                style="font-size: 2rem; font-weight: 800; font-family: var(--numbers);">$100</span>
+                        </div>
+                        <button class="btn btn-primary w-full" style="font-size: 1.25rem; height: 64px; box-shadow: 0 20px 40px rgba(13,92,99,0.2);">Authorize Impact Transfer</button>
+                        
+                        <p style="text-align: center; font-size: 0.8125rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> 
+                            BANK-GRADE ENCRYPTION · SECURED BY STRIPE & PCI-DSS
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <!-- NEW SECTION: Guardian Circle -->
+                    <div style="background: var(--primary); color: white; padding: 2.5rem; border-radius: 1.5rem; margin-bottom: 3rem; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: -1rem; right: -1rem; opacity: 0.1;">
+                            <svg width="200" height="200" viewBox="0 0 24 24" fill="white"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        </div>
+                        <span class="badge mb-4" style="background: var(--accent); color: var(--dark); border: none;">ELITE PROGRAM</span>
+                        <h3 style="color: white; margin-bottom: 1rem;">The Guardian Circle</h3>
+                        <p style="color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 1.5rem;">Join a select group of monthly partners providing predictable capital that allows for decade-long infrastructure planning.</p>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem;">
+                            <li style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Exclusive Annual Accountability Summit
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Ground-Zero Direct Field Messages
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Quarterly Immutable Impact Reports
+                            </li>
+                        </ul>
+                        <button class="btn btn-white w-full" style="border: none; background: var(--accent); color: var(--dark); font-weight: 800;">Become a Guardian</button>
+                    </div>
+
+                    <h3 class="mb-8" style="font-size: 1.25rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary);">Impact Breakdown</h3>
+                    <div style="display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem;">
+                        <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                            <div style="background: var(--cream); border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 1rem; color: var(--primary);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 800; margin-bottom: 0.25rem; font-family: var(--numbers); font-size: 1.125rem;">$25 / MO</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6;">Fulfils full textbook and uniform requirements for one child in our Kenyan regional hubs.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                            <div style="background: var(--cream); border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 1rem; color: var(--primary);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.74 5.74c1.55 1.55 2.5 3.79 2.5 6.24a8.21 8.21 0 0 1-2.43 5.86 8.24 8.24 0 0 1-5.81 2.47 8.24 8.24 0 0 1-5.81-2.47 8.21 8.21 0 0 1-2.43-5.86c0-2.45.95-4.69 2.5-6.24L12 2.69z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 800; margin-bottom: 0.25rem; font-family: var(--numbers); font-size: 1.125rem;">$50 / MO</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6;">Provides 18,000 liters of purified, solar-pumped water to vulnerable communities through local councils.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                            <div style="background: var(--cream); border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 1rem; color: var(--primary);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 800; margin-bottom: 0.25rem; font-family: var(--numbers); font-size: 1.125rem;">$100 / MO</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6;">Finances a mobile diagnostic unit deployment servicing 10 remote villages every week.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Trust Us Section -->
+    <section class="sec sec-white">
+        <div class="wrap">
+            <div class="mb-12 tac">
+                <span class="badge mb-4">Transparency</span>
+                <h2>Why Trust Jeevan Foundation?</h2>
+            </div>
+            <div class="g3">
+                <div class="card">
+                    <div class="card-body tac">
+                        <div style="margin-bottom: 1rem; color: var(--primary); display: flex; justify-content: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h3 class="mb-3">Secure Payments</h3>
+                        <p style="color: var(--text-muted);">256-bit SSL encryption ensures your financial data is protected at all times.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body tac">
+                        <div style="margin-bottom: 1rem; color: var(--primary); display: flex; justify-content: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        </div>
+                        <h3 class="mb-3">Financial Efficiency</h3>
+                        <p style="color: var(--text-muted);">94% of every dollar goes directly to our field programs and community grants.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body tac">
+                        <div style="margin-bottom: 1rem; color: var(--primary); display: flex; justify-content: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        </div>
+                        <h3 class="mb-3">Tax Deductible</h3>
+                        <p style="color: var(--text-muted);">We are a registered 501(c)(3) nonprofit. You will receive an instant tax receipt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="sec sec-beige">
+        <div class="wrap" style="max-width: 800px;">
+            <div class="tac mb-12">
+                <span class="badge mb-4">Donor Support</span>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mb-2" style="font-size: 1.125rem;">Can I cancel my monthly donation?</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem;">Yes, you can pause, change, or cancel your recurring donation at any time through your donor dashboard.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mb-2" style="font-size: 1.125rem;">How is my donation used?</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem;">Donations are allocated to our most urgent verified clusters unless you specify a particular cause (e.g., Education, Water, Healthcare).</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mb-2" style="font-size: 1.125rem;">Do you accept other payment methods?</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem;">Yes, we accept bank transfers, PayPal, and crypto donations. Please contact finance@jeevan.org for details.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-sec">
+        <div class="wrap">
+            <div class="footer-top">
+                <!-- Column 1: Brand + Trust -->
+                <div class="footer-brand-col">
+                    <h5 class="footer-logo">Jeevan Foundation</h5>
+                    <p class="footer-desc">Sustainable development through education, healthcare, and livelihoods.</p>
+                    <div class="footer-contact-info">
+                         <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                            <a href="mailto:contact@jeevan.org">contact@jeevan.org</a>
+                         </p>
+                         <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <a href="tel:+912212345678">+91 22 1234 5678</a>
+                         </p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Explore -->
+                <div class="footer-links-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="causes.html">Causes</a></li>
+                        <li><a href="home2.html">Home2</a></li>
+                        <li><a href="blog.html">Stories</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Get Involved -->
+                <div class="footer-links-col">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="contact.html">Volunteer</a></li>
+                        <li><a href="contact.html">Partner With Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Stay Connected -->
+                <div class="footer-newsletter">
+                    <h4>Stay Connected</h4>
+                    <p>Get impact updates and field stories.</p>
+                    <form class="footer-form">
+                        <label for="footer-email" style="display: none;">Email Address</label>
+                        <input type="email" id="footer-email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-footer">Subscribe</button>
+                    </form>
+                    <p class="footer-micro">We respect your inbox. Unsubscribe anytime.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Jeevan Foundation · Registered Nonprofit</p>
+                <div class="footer-bottom-links">
+                    <a href="policy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Data Scripts -->
+    <script src="src/js/auth.js"></script>
+    <script src="src/js/main.js"></script>
+    <script src="src/js/data.js"></script>
+    <script>
+
+        let selectedAmount = 100;
+        let selectedCause = "Where it's needed most";
+
+        function selectType(t) {
+            const o = document.getElementById('oneTime'), m = document.getElementById('monthly');
+            if (t === 'oneTime') {
+                o.style.background = 'var(--primary)'; o.style.color = 'white';
+                m.style.background = 'transparent'; m.style.color = 'var(--primary)';
+            } else {
+                m.style.background = 'var(--primary)'; m.style.color = 'white';
+                o.style.background = 'transparent'; o.style.color = 'var(--primary)';
+            }
+        }
+
+        function selectAmount(a, b) {
+            selectedAmount = a;
+            document.querySelectorAll('.amt-btn').forEach(x => {
+                x.style.background = 'white';
+                x.style.borderColor = '#e5e7eb';
+                x.style.color = 'var(--text)';
+            });
+            b.style.background = 'var(--primary)';
+            b.style.borderColor = 'var(--primary)';
+            b.style.color = 'white';
+            document.getElementById('totalAmount').textContent = '$' + a;
+            document.getElementById('customAmount').value = '';
+        }
+
+        document.getElementById('customAmount').addEventListener('input', function () {
+            if (this.value) {
+                selectedAmount = parseFloat(this.value);
+                document.querySelectorAll('.amt-btn').forEach(x => {
+                    x.style.background = 'white';
+                    x.style.borderColor = '#e5e7eb';
+                    x.style.color = 'var(--text)';
+                });
+                document.getElementById('totalAmount').textContent = '$' + this.value;
+            }
+        });
+
+        // Track cause selection
+        document.querySelector('select').addEventListener('change', function () {
+            selectedCause = this.value;
+        });
+
+        // Handle donation submission
+        document.querySelector('.btn.btn-primary.w-full').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            if (!selectedAmount || selectedAmount <= 0) {
+                alert('Please select or enter a donation amount.');
+                return;
+            }
+
+            // Map cause names
+            const causeMap = {
+                "Where it's needed most": "General Fund",
+                "Education Programs": "Education for All",
+                "Clean Water": "Clean Water Initiative",
+                "Healthcare": "Healthcare Access",
+                "Emergency Relief": "Emergency Relief"
+            };
+
+            const causeName = causeMap[selectedCause] || "General Fund";
+
+            // Add donation to storage  
+            UserData.addDonation({
+                amount: selectedAmount,
+                cause: causeName,
+                paymentMethod: 'Card'
+            });
+
+            // Show success message
+            alert(`Thank you for your generous donation of $${selectedAmount} to ${causeName}!\n\nYour donation has been recorded. Check your dashboard for details.`);
+
+            // Redirect to dashboard if logged in, otherwise to home
+            if (Auth.isAuthenticated()) {
+                window.location.href = 'user-dashboard.html';
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
