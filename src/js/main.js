@@ -41,8 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    window.onclick = function () {
+    window.onclick = function (event) {
         const dropdown = document.getElementById('profileDropdown');
+        const profileBtn = document.getElementById('profileBtn');
+        
+        // Don't close dropdown if clicking inside the dropdown or on the profile button
+        if (dropdown && dropdown.contains(event.target)) {
+            return;
+        }
+        if (profileBtn && profileBtn.contains(event.target)) {
+            return;
+        }
+        
         if (dropdown && dropdown.classList.contains('open')) {
             dropdown.classList.remove('open');
             if (profileBtn) profileBtn.setAttribute('aria-expanded', 'false');

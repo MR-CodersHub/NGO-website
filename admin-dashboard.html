@@ -862,22 +862,15 @@
     <script src="src/js/admin-data.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Check if admin is logged in (simulation)
-            if (!Auth.isAuthenticated() || !Auth.isAdmin()) {
-                // Not authenticated or not an admin - redirect
-                alert('Access Denied: Admin privileges required.');
-                window.location.href = 'login.html';
-                return;
-            }
-
+            // No authentication check - anyone can access the admin dashboard
             const user = Auth.getUser();
 
             // Populate User Info in Sidebar
             const sidebarAvatar = document.getElementById('avatarInitials');
             const sidebarName = document.getElementById('userNameDisplay');
 
-            if (sidebarAvatar) sidebarAvatar.textContent = Auth.getInitials();
-            if (sidebarName && user) sidebarName.textContent = user.firstName + (user.lastName ? ' ' + user.lastName : '');
+            if (sidebarAvatar) sidebarAvatar.textContent = user ? Auth.getInitials() : 'A';
+            if (sidebarName) sidebarName.textContent = user ? (user.firstName + (user.lastName ? ' ' + user.lastName : '')) : 'Admin';
 
             // Set Active Menu Highlight
             setActiveAdminMenu();

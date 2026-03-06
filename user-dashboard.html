@@ -682,40 +682,32 @@
     <!-- Data Script -->
     <script src="src/js/data.js"></script>
     <script>
-        // Check if user is logged in
+        // No authentication check - anyone can access the user dashboard
         document.addEventListener('DOMContentLoaded', function () {
-            if (!Auth.isAuthenticated()) {
-                // Redirect to login if not authenticated
-                window.location.href = 'login.html';
-                return;
+            const user = Auth.getUser();
+            
+            // Update avatar initials
+            const avatarEl = document.querySelector('.user-avatar');
+            if (avatarEl) {
+                avatarEl.textContent = user ? Auth.getInitials() : 'U';
             }
 
-            // Update user info in sidebar
-            const user = Auth.getUser();
-            if (user) {
-                // Update avatar initials
-                const avatarEl = document.querySelector('.user-avatar');
-                if (avatarEl) {
-                    avatarEl.textContent = Auth.getInitials();
-                }
+            // Update user name
+            const nameEl = document.querySelector('.user-name');
+            if (nameEl) {
+                nameEl.textContent = user ? (user.firstName + (user.lastName ? ' ' + user.lastName : '')) : 'User';
+            }
 
-                // Update user name
-                const nameEl = document.querySelector('.user-name');
-                if (nameEl) {
-                    nameEl.textContent = user.firstName + (user.lastName ? ' ' + user.lastName : '');
-                }
+            // Update email
+            const emailEl = document.querySelector('.user-email');
+            if (emailEl) {
+                emailEl.textContent = user ? user.email : 'user@example.com';
+            }
 
-                // Update email
-                const emailEl = document.querySelector('.user-email');
-                if (emailEl) {
-                    emailEl.textContent = user.email;
-                }
-
-                // Update welcome message
-                const welcomeEl = document.querySelector('.topbar-title');
-                if (welcomeEl) {
-                    welcomeEl.textContent = 'Welcome back, ' + user.firstName + '!';
-                }
+            // Update welcome message
+            const welcomeEl = document.querySelector('.topbar-title');
+            if (welcomeEl) {
+                welcomeEl.textContent = user ? ('Welcome back, ' + user.firstName + '!') : 'Welcome back!';
             }
 
             // Load dashboard data

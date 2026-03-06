@@ -166,69 +166,83 @@ const Auth = {
     /**
      * Update UI based on auth state
      * Called automatically after login/logout/signup
+     * Updated to show Admin/User/Login for everyone
      */
     updateUI() {
         const isAuth = this.isAuthenticated();
         const user = this.getUser();
 
-        // Update profile dropdown content
+        // Always show the new menu structure with Admin, User, Login
         const guestMenu = document.getElementById('guestMenu');
-        const userMenu = document.getElementById('userMenu');
+        
+        if (guestMenu) {
+            // Create new menu structure if it doesn't have the updated items
+            const existingAdminLink = guestMenu.querySelector('a[href="admin-dashboard.html"]');
+            
+            if (!existingAdminLink) {
+                // Replace the menu content with Admin, User, Login
+                guestMenu.innerHTML = `
+                    <div class="dropdown-menu">
+                        <a href="admin-dashboard.html" class="dropdown-item">Admin</a>
+                        <a href="user-dashboard.html" class="dropdown-item">User</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="login.html" class="dropdown-item primary">Login</a>
+                    </div>
+                `;
+            }
+        }
+
+        // Update avatar initials based on auth state
         const avatarInitials = document.getElementById('avatarInitials');
+        if (avatarInitials) {
+            avatarInitials.textContent = isAuth ? this.getInitials() : 'G';
+        }
+
+        // Update user info if authenticated
         const userName = document.getElementById('userName');
         const userEmail = document.getElementById('userEmail');
-
-        if (guestMenu && userMenu) {
-            if (isAuth) {
-                guestMenu.style.display = 'none';
-                userMenu.style.display = 'block';
-
-                if (avatarInitials) {
-                    avatarInitials.textContent = this.getInitials();
-                }
-                if (userName && user) {
-                    userName.textContent = user.firstName + (user.lastName ? ' ' + user.lastName : '');
-                }
-                if (userEmail && user) {
-                    userEmail.textContent = user.email;
-                }
-
-                // Dynamically update dashboard links based on role
-                const dashboardLinks = document.querySelectorAll('a[href="user-dashboard.html"], a[href="admin-dashboard.html"]');
-                const targetDashboard = this.isAdmin() ? 'admin-dashboard.html' : 'user-dashboard.html';
-
-                dashboardLinks.forEach(link => {
-                    link.href = targetDashboard;
-                });
-
-            } else {
-                guestMenu.style.display = 'block';
-                userMenu.style.display = 'none';
-
-                if (avatarInitials) {
-                    avatarInitials.textContent = 'G';
-                }
-            }
+        
+        if (isAuth && user) {
+            if (userName) userName.textContent = user.firstName + (user.lastName ? ' ' + user.lastName : '');
+            if (userEmail) userEmail.textContent = user.email;
         }
 
         // Update mobile menu auth links
         const mobGuestLinks = document.getElementById('mobGuestLinks');
-        const mobUserLinks = document.getElementById('mobUserLinks');
-
-        if (mobGuestLinks && mobUserLinks) {
-            if (isAuth) {
-                mobGuestLinks.style.display = 'none';
-                mobUserLinks.style.display = 'block';
-
-                // Also update dashboard links in mobile menu
-                const mobDashboardLinks = mobUserLinks.querySelectorAll('a[href="user-dashboard.html"], a[href="admin-dashboard.html"]');
-                const targetDashboard = this.isAdmin() ? 'admin-dashboard.html' : 'user-dashboard.html';
-                mobDashboardLinks.forEach(link => {
-                    link.href = targetDashboard;
-                });
-            } else {
-                mobGuestLinks.style.display = 'block';
-                mobUserLinks.style.display = 'none';
+        
+        if (mobGuestLinks) {
+            // Check if already updated
+            const existingMobAdminLink = mobGuestLinks.querySelector('a[href="admin-dashboard.html"]');
+            
+            if (!existingMobAdminLink) {
+                // Update mobile menu with Admin, User, Login links
+                const mobGuestContent = mobGuestLinks.innerHTML;
+                
+                // Replace the mobile menu links to include Admin and User options
+                mobGuestLinks.innerHTML = `
+                    <a href="admin-dashboard.html" class="mob-action-btn secondary" style="margin-bottom: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        Admin Panel
+                    </a>
+                    <a href="user-dashboard.html" class="mob-action-btn secondary" style="margin-bottom: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="7" height="9" x="3" y="3" rx="1" />
+                            <rect width="7" height="5" x="14" y="3" rx="1" />
+                            <rect width="7" height="9" x="14" y="12" rx="1" />
+                            <rect width="7" height="5" x="3" y="16" rx="1" />
+                        </svg>
+                        My Dashboard
+                    </a>
+                    <a href="donate.html" class="mob-action-btn primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                        </svg>
+                        Support Our Mission
+                    </a>
+                    <a href="login.html" class="mob-action-btn secondary">Login</a>
+                `;
             }
         }
     }
